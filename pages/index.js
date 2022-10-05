@@ -24,11 +24,11 @@ export default function Home() {
       </div>)
     },
     {
-      url: "img2.png",
+      url: "65aecca1f6488041a9f221f84fe1b12e.jpeg",
       writeup: ``
     },
     {
-      url: "img3.png",
+      url: "65aecca1f6488041a9f221f84fe1b12e.jpeg",
       writeup: ``
     }
     ]);
