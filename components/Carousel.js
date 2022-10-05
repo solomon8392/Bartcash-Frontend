@@ -26,6 +26,7 @@ export default function Home({carouselProperties}) {
     {pictures.map((ele, index) => {
       return (
         <button
+        key={index}
       type="button"
       // data-bs-target="#carouselExampleCaptions"
       // data-bs-slide-to="0"
@@ -42,7 +43,7 @@ export default function Home({carouselProperties}) {
     {pictures.map((ele, index) => {
       
       return(
-        <div className={`carousel-item ${index == currentImage ? "active animate-fade z-20" : "z-10"} block relative float-left w-full`}>
+        <div key={index} className={`carousel-item ${index == currentImage ? "active animate-fade z-20" : "z-10"} block relative float-left w-full`}>
       <Image layout='responsive' width={12} height={6}
         src={`/images/${ele.url}`}
         // className="block w-full"
