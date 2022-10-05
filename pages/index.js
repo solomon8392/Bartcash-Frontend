@@ -1,69 +1,505 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+// import styles from '../styles/Home.module.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBars, faTag,  } from '@fortawesome/free-solid-svg-icons';
+import { faHeart } from '@fortawesome/free-regular-svg-icons';
+import HeaderComponent from "../components/Header";
+import NavigationComponent from "../components/HeaderNavigation";
+import CarouselComponent from "../components/Carousel";
+import ProductsComponent from "../components/Products";
+import FooterComponent from "../components/Footer";
+import AuctionComponent from "../components/Auction";
+import { useState } from 'react';
 
 export default function Home() {
+
+  
+  const [carProps, setCarousel] = useState([
+    {
+      url: "65aecca1f6488041a9f221f84fe1b12e.jpeg",
+      writeup: (<div className={`absolute left-[50%] top-[62%] z-10 translate-y-[-50%] translate-x-[-50%] xl:text-[48px] text-xl xl:w-[480px] w-[200px] font-bold text-white text-center`}>
+      Save more money
+  when you buy less and <span className={`text-yellow`}>swap</span> more
+      </div>)
+    },
+    {
+      url: "img2.png",
+      writeup: ``
+    },
+    {
+      url: "img3.png",
+      writeup: ``
+    }
+    ]);
+
+    const [productsProps, setProducts] = useState({
+      productTitle: "Hot Deals",
+      products: [
+        {
+          userPicture: "/images/profile-image3.jpeg",
+          userName: "Didi Peters",
+          userId: "001",
+          addedToFavourite: false,
+          productName: "HP Elitebook",
+          productPicture: "/images/hp-laptop.png",
+          productPrice: 50000,
+          productId: "01"
+        },
+        {
+          userPicture: "/images/img2.png",
+          userName: "Daniel E",
+          userId: "001",
+          addedToFavourite: false,
+          productName: "HP Elitebook",
+          productPicture: "/images/hp-laptop.png",
+          productPrice: 50000,
+          productId: "01"
+        },
+        {
+          userPicture: "/images/profile-image2.jpeg",
+          userName: "Victor P",
+          userId: "001",
+          addedToFavourite: false,
+          productName: "HP Elitebook",
+          productPicture: "/images/hp-laptop.png",
+          productPrice: 50000,
+          productId: "01"
+        },
+        {
+          userPicture: "/images/profile-image4.png",
+          userName: "Victor P",
+          userId: "001",
+          addedToFavourite: false,
+          productName: "HP Elitebook",
+          productPicture: "/images/hp-laptop.png",
+          productPrice: 50000,
+          productId: "01"
+        },
+        {
+          userPicture: "/images/profile-image3.jpeg",
+          userName: "Victor P",
+          userId: "001",
+          addedToFavourite: false,
+          productName: "HP Elitebook",
+          productPicture: "/images/hp-laptop.png",
+          productPrice: 50000,
+          productId: "01"
+        },
+        {
+          userPicture: "/images/img2.png",
+          userName: "Victor P",
+          userId: "001",
+          addedToFavourite: false,
+          productName: "HP Elitebook",
+          productPicture: "/images/hp-laptop.png",
+          productPrice: 50000,
+          productId: "01"
+        },
+        {
+          userPicture: "/images/profile-image2.jpeg",
+          userName: "Victor P",
+          userId: "001",
+          addedToFavourite: false,
+          productName: "HP Elitebook",
+          productPicture: "/images/hp-laptop.png",
+          productPrice: 50000,
+          productId: "01"
+        },
+        {
+          userPicture: "/images/profile-image4.png",
+          userName: "Victor P",
+          userId: "001",
+          addedToFavourite: true,
+          productName: "HP Elitebook",
+          productPicture: "/images/hp-laptop.png",
+          productPrice: 50000,
+          productId: "01"
+        },
+        {
+          userPicture: "/images/profile-image3.jpeg",
+          userName: "Victor P",
+          userId: "001",
+          addedToFavourite: false,
+          productName: "HP Elitebook",
+          productPicture: "/images/hp-laptop.png",
+          productPrice: 50000,
+          productId: "01"
+        },
+        {
+          userPicture: "/images/img2.png",
+          userName: "Victor P",
+          userId: "001",
+          addedToFavourite: false,
+          productName: "HP Elitebook",
+          productPicture: "/images/hp-laptop.png",
+          productPrice: 50000,
+          productId: "01"
+        },
+        {
+          userPicture: "/images/profile-image2.jpeg",
+          userName: "Victor P",
+          userId: "001",
+          addedToFavourite: true,
+          productName: "HP Elitebook",
+          productPicture: "/images/hp-laptop.png",
+          productPrice: 50000,
+          productId: "01"
+        },
+        {
+          userPicture: "/images/profile-image4.png",
+          userName: "Victor P",
+          userId: "001",
+          addedToFavourite: false,
+          productName: "HP Elitebook",
+          productPicture: "/images/hp-laptop.png",
+          productPrice: 50000,
+          productId: "01"
+        },
+        {
+          userPicture: "/images/profile-image3.jpeg",
+          userName: "Victor P",
+          userId: "001",
+          addedToFavourite: false,
+          productName: "HP Elitebook",
+          productPicture: "/images/hp-laptop.png",
+          productPrice: 50000,
+          productId: "01"
+        },
+        {
+          userPicture: "/images/img2.png",
+          userName: "Victor P",
+          userId: "001",
+          addedToFavourite: true,
+          productName: "HP Elitebook",
+          productPicture: "/images/hp-laptop.png",
+          productPrice: 50000,
+          productId: "01"
+        },
+        {
+          userPicture: "/images/profile-image2.jpeg",
+          userName: "Victor P",
+          userId: "001",
+          addedToFavourite: false,
+          productName: "HP Elitebook",
+          productPicture: "/images/hp-laptop.png",
+          productPrice: 50000,
+          productId: "01"
+        },
+        {
+          userPicture: "/images/profile-image4.png",
+          userName: "Victor P",
+          userId: "001",
+          addedToFavourite: false,
+          productName: "HP Elitebook",
+          productPicture: "/images/hp-laptop.png",
+          productPrice: 50000,
+          productId: "01"
+        }
+      ]
+    });
+
+    const [popularProducts, setPopularProducts] = useState({
+      productTitle: "Popular Products",
+      products: [
+        {
+          userPicture: "/images/profile-image3.jpeg",
+          userName: "Victor P",
+          userId: "001",
+          addedToFavourite: false,
+          productName: "HP Elitebook",
+          productPicture: "/images/hp-laptop.png",
+          productPrice: 50000,
+          productId: "01"
+        },
+        {
+          userPicture: "/images/img2.png",
+          userName: "Victor P",
+          userId: "001",
+          addedToFavourite: false,
+          productName: "HP Elitebook",
+          productPicture: "/images/hp-laptop.png",
+          productPrice: 50000,
+          productId: "01"
+        },
+        {
+          userPicture: "/images/profile-image2.jpeg",
+          userName: "Victor P",
+          userId: "001",
+          addedToFavourite: false,
+          productName: "HP Elitebook",
+          productPicture: "/images/hp-laptop.png",
+          productPrice: 50000,
+          productId: "01"
+        },
+        {
+          userPicture: "/images/profile-image4.png",
+          userName: "Victor P",
+          userId: "001",
+          addedToFavourite: false,
+          productName: "HP Elitebook",
+          productPicture: "/images/hp-laptop.png",
+          productPrice: 50000,
+          productId: "01"
+        },
+        {
+          userPicture: "/images/profile-image3.jpeg",
+          userName: "Victor P",
+          userId: "001",
+          addedToFavourite: false,
+          productName: "HP Elitebook",
+          productPicture: "/images/hp-laptop.png",
+          productPrice: 50000,
+          productId: "01"
+        },
+        {
+          userPicture: "/images/img2.png",
+          userName: "Victor P",
+          userId: "001",
+          addedToFavourite: false,
+          productName: "HP Elitebook",
+          productPicture: "/images/hp-laptop.png",
+          productPrice: 50000,
+          productId: "01"
+        },
+        {
+          userPicture: "/images/profile-image2.jpeg",
+          userName: "Victor P",
+          userId: "001",
+          addedToFavourite: false,
+          productName: "HP Elitebook",
+          productPicture: "/images/hp-laptop.png",
+          productPrice: 50000,
+          productId: "01"
+        },
+        {
+          userPicture: "/images/profile-image4.png",
+          userName: "Victor P",
+          userId: "001",
+          addedToFavourite: true,
+          productName: "HP Elitebook",
+          productPicture: "/images/hp-laptop.png",
+          productPrice: 50000,
+          productId: "01"
+        }
+      ]
+    });
+
+    const [recommendedProducts, setRecommendedProducts] = useState({
+      productTitle: "Recommended",
+      products: [
+        {
+          userPicture: "/images/profile-image3.jpeg",
+          userName: "Victor P",
+          userId: "001",
+          addedToFavourite: false,
+          productName: "HP Elitebook",
+          productPicture: "/images/hp-laptop.png",
+          productPrice: 50000,
+          productId: "01"
+        },
+        {
+          userPicture: "/images/img2.png",
+          userName: "Victor P",
+          userId: "001",
+          addedToFavourite: false,
+          productName: "HP Elitebook",
+          productPicture: "/images/hp-laptop.png",
+          productPrice: 50000,
+          productId: "01"
+        },
+        {
+          userPicture: "/images/profile-image2.jpeg",
+          userName: "Victor P",
+          userId: "001",
+          addedToFavourite: false,
+          productName: "HP Elitebook",
+          productPicture: "/images/hp-laptop.png",
+          productPrice: 50000,
+          productId: "01"
+        },
+        {
+          userPicture: "/images/profile-image4.png",
+          userName: "Victor P",
+          userId: "001",
+          addedToFavourite: false,
+          productName: "HP Elitebook",
+          productPicture: "/images/hp-laptop.png",
+          productPrice: 50000,
+          productId: "01"
+        },
+        {
+          userPicture: "/images/profile-image3.jpeg",
+          userName: "Victor P",
+          userId: "001",
+          addedToFavourite: false,
+          productName: "HP Elitebook",
+          productPicture: "/images/hp-laptop.png",
+          productPrice: 50000,
+          productId: "01"
+        },
+        {
+          userPicture: "/images/img2.png",
+          userName: "Victor P",
+          userId: "001",
+          addedToFavourite: false,
+          productName: "HP Elitebook",
+          productPicture: "/images/hp-laptop.png",
+          productPrice: 50000,
+          productId: "01"
+        },
+        {
+          userPicture: "/images/profile-image2.jpeg",
+          userName: "Victor P",
+          userId: "001",
+          addedToFavourite: false,
+          productName: "HP Elitebook",
+          productPicture: "/images/hp-laptop.png",
+          productPrice: 50000,
+          productId: "01"
+        },
+        {
+          userPicture: "/images/profile-image4.png",
+          userName: "Victor P",
+          userId: "001",
+          addedToFavourite: true,
+          productName: "HP Elitebook",
+          productPicture: "/images/hp-laptop.png",
+          productPrice: 50000,
+          productId: "01"
+        }
+      ]
+    });
+
+    const [auction, setAunction] = useState({
+      productTitle: "Ongoing Auctions",
+      products: [
+        {
+          userPicture: "/images/img2.png",
+          userName: "Victor P",
+          userId: "001",
+          addedToFavourite: false,
+          live: true,
+          productName: "HP Elitebook",
+          productPicture: "/images/sneakers.jpg",
+          productDescription: "This is my 2 months old sneakers which i would love to swap with something nice, the highest bidder takes it.",
+          productPrice: 50000,
+          productId: "01"
+        },
+        {
+          userPicture: "/images/profile-image2.jpeg",
+          userName: "Didi Peters",
+          userId: "001",
+          live: true,
+          addedToFavourite: true,
+          productName: "HP Elitebook",
+          productPicture: "/images/laptop-pic2.jpeg",
+          productDescription: "This is my 4 months old MacBook which i would love to swap with something nice, the highest bidder takes it.",
+          productPrice: 50000,
+          productId: "01"
+        },
+        {
+          userPicture: "/images/profile-image3.jpeg",
+          userName: "Jerry Martins",
+          userId: "001",
+          live: false,
+          addedToFavourite: false,
+          productName: "HP Elitebook",
+          productPicture: "/images/laptop-img4.jpg",
+          productDescription: "This is my 3 months old laptop which i would love to swap with something nice, the highest bidder takes it.",
+          productPrice: 50000,
+          productId: "01"
+        },
+        {
+          userPicture: "/images/img2.png",
+          userName: "Victor P",
+          userId: "001",
+          addedToFavourite: false,
+          productName: "HP Elitebook",
+          live: false,
+          productPicture: "/images/sneakers.jpg",
+          productDescription: "This is my 2 months old sneakers which i would love to swap with something nice, the highest bidder takes it.",
+          productPrice: 50000,
+          productId: "01"
+        },
+        {
+          userPicture: "/images/profile-image4.png",
+          userName: "Victor P",
+          userId: "001",
+          addedToFavourite: false,
+          productName: "HP Elitebook",
+          live: false,
+          productPicture: "/images/laptop-img4.jpg",
+          productDescription: "This is my 2 months old latop which i would love to swap with something nice, the highest bidder takes it.",
+          productPrice: 50000,
+          productId: "01"
+        },
+        {
+          userPicture: "/images/profile-image2.jpeg",
+          userName: "Victor P",
+          userId: "001",
+          addedToFavourite: false,
+          productName: "HP Elitebook",
+          live: false,
+          productPicture: "/images/laptop-pic2.jpeg",
+          productDescription: "This is my 2 months old laptop which i would love to swap with something nice, the highest bidder takes it.",
+          productPrice: 50000,
+          productId: "01"
+        },
+        {
+          userPicture: "/images/profile-image4.png",
+          userName: "Victor P",
+          userId: "001",
+          addedToFavourite: false,
+          productName: "HP Elitebook",
+          live: false,
+          productPicture: "/images/laptop-img3.jpg",
+          productDescription: "This is my 2 months old laptop which i would love to swap with something nice, the highest bidder takes it.",
+          productPrice: 50000,
+          productId: "01"
+        },
+        {
+          userPicture: "/images/profile-image2.jpeg",
+          userName: "Victor P",
+          userId: "001",
+          addedToFavourite: false,
+          productName: "HP Elitebook",
+          live: false,
+          productPicture: "/images/laptop-pic1.jpeg",
+          productDescription: "This is my 2 months old laptop which i would love to swap with something nice, the highest bidder takes it.",
+          productPrice: 50000,
+          productId: "01"
+        }
+      ]
+    });
+
   return (
-    <div className={styles.container}>
+    <div>
       <Head>
-        <title>Create Next App</title>
-        <meta name="description" content="Generated by create next app" />
-        <link rel="icon" href="/favicon.ico" />
+        <title>BartCash</title>
       </Head>
 
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
+      <HeaderComponent />
 
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
+      <hr />
 
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h2>Documentation &rarr;</h2>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
+      <NavigationComponent />
 
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h2>Learn &rarr;</h2>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
+      <hr />
 
-          <a
-            href="https://github.com/vercel/next.js/tree/canary/examples"
-            className={styles.card}
-          >
-            <h2>Examples &rarr;</h2>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
 
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h2>Deploy &rarr;</h2>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
+      <CarouselComponent carouselProperties={carProps} />
 
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
-      </footer>
+      <ProductsComponent productsProps={productsProps} />
+
+      <ProductsComponent productsProps={popularProducts} />
+
+      <AuctionComponent auctionProps={auction} />
+
+      <ProductsComponent productsProps={recommendedProducts} />
+
+      <FooterComponent />
+
     </div>
   )
 }
