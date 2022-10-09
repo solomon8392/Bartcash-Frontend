@@ -11,7 +11,7 @@ export default function Home({ productsProps }) {
     const [products, setProducts] = useState(productsProps);
 
     return(
-        <div className={`w-full pb-6 py-14`}>
+        <div className={`w-full px-6 pb-8 pt-14`}>
         <div className={`bg-yellow text-primary text-center pt-8 pb-4 mb-2 font-bold font-[40px]`}>{products.productTitle}</div>
         <div className={`grid grid-cols-2 md:grid-cols-12 gap-y-10 gap-x-14 w-full my-10`}>
 
