@@ -269,9 +269,9 @@ export default function Home() {
         >
           {[{}, {}, {}, {}, {}].map((star, index) => {
             return (
-              <div>
+              <div key={index}>
                 {ratingHovered > index ? (
-                  <li key={index}>
+                  <li>
                     <svg
                       aria-hidden="true"
                       focusable="false"
