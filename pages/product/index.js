@@ -271,7 +271,7 @@ export default function Home() {
             return (
               <div>
                 {ratingHovered > index ? (
-                  <li>
+                  <li key={index}>
                     <svg
                       aria-hidden="true"
                       focusable="false"
