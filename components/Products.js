@@ -12,12 +12,12 @@ export default function Home({ productsProps }) {
 
     return(
         <div className={`w-full px-6`}>
-        <div className={`bg-yellow text-primary text-center py-4 mb-2 font-bold font-[40px]`}>{products.productTitle}</div>
-        <div className={`grid grid-cols-12 gap-6 w-full my-10`}>
+        <div className={`bg-yellow text-primary text-center pt-8 pb-4 mb-2 font-bold font-[40px]`}>{products.productTitle}</div>
+        <div className={`grid grid-cols-2 md:grid-cols-12 gap-y-6 gap-x-14 w-full my-10`}>
 
         {products.products.map((product, index) => {
             return (
-                <div key={index} className={`col-span-12 md:col-span-4 xl:col-span-3 border border-[2px] border-solid p-4 border-yellow rounded-[20px]`}>
+                <div key={index} className={`col-span-2 md:col-span-4 xl:col-span-3 border border-[2px] border-solid p-4 border-yellow rounded-[20px]`}>
             <div className={`flex items-center justify-between rounded-[20px]`}>
               <Image src={product.userPicture} layout='intrinsic' className={`rounded-full`} width={35} height={35} />
               <div className={`text-[20px] font-medium`}>{product.userName}</div>

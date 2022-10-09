@@ -18,9 +18,10 @@ export default function Home() {
   const [carProps, setCarousel] = useState([
     {
       url: "65aecca1f6488041a9f221f84fe1b12e.jpeg",
-      writeup: (<div className={`absolute left-[50%] top-[62%] z-10 translate-y-[-50%] translate-x-[-50%] xl:text-[48px] text-xl xl:w-[480px] w-[200px] font-bold text-white text-center`}>
-      Save more money
-  when you buy less and <span className={`text-yellow`}>swap</span> more
+      writeup: (<div className={`absolute left-[50%] flex flex-col gap-y-4 md:gap-y-6 xl:gap-y-10 leading-5 md:leading-10 top-[50%] z-10 translate-y-[-50%] translate-x-[-50%] xl:text-[48px] text-xl xl:w-[480px] w-[200px] font-bold text-white text-center`}>
+      <div>Save more money</div>
+  <div>when you buy less </div>
+  <div>and <span className={`text-yellow`}>swap</span> more</div>
       </div>)
     },
     {
