@@ -233,9 +233,9 @@ export default function Home() {
               <div className="overflow-hidden">
                 <table className="border min-w-fit text-left">
                   <tbody>
-                    {descriptions.map((description) => {
+                    {descriptions.map((description, index) => {
                       return (
-                        <tr className="border-b">
+                        <tr key={index} className="border-b">
                           <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap border-r">
                             {description.name}
                           </td>
