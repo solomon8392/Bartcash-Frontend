@@ -6,14 +6,14 @@ import far from '@fortawesome/free-regular-svg-icons';
 import Liked from "./hearts/Liked";
 import NotLiked from "./hearts/NotLiked";
 
-export default function Home({ productsProps }) {
+export default function Home({ moreProducts }) {
 
-    const [products, setProducts] = useState(productsProps);
+    const [products, setProducts] = useState(moreProducts);
 
     return(
-        <div className={`w-full px-6 pb-6 pt-10`}>
-        <div className={`bg-yellow text-primary text-center py-4 mb-2 font-bold font-[40px]`}>{products.productTitle}</div>
-        <div className={`grid grid-cols-2 md:grid-cols-12 gap-y-10 gap-x-14 xl:gap-x-8 w-full my-10`}>
+        <div className={`w-full px-6 pb-6 pt-4`}>
+        <div className={`py-4 mb-2 font-bold font-[40px]`}>{moreProducts.productTitle}</div>
+        <div className={`grid grid-cols-2 md:grid-cols-12 gap-y-10 gap-x-14 xl:gap-x-8 w-full mb-10`}>
 
         {products.products.map((product, index) => {
             return (

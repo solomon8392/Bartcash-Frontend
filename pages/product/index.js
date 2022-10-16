@@ -27,8 +27,76 @@ import NotLiked from "../../components/hearts/NotLiked";
 import Image from "next/image";
 import { faMessage } from "@fortawesome/free-regular-svg-icons";
 import { useState } from "react";
+import MoreLikeThis from "../../components/MoreLikeThis"
 
 export default function Home() {
+
+  const [moreProducts, setMoreProducts] = useState({
+    productTitle: "More Like This",
+    products: [
+      {
+        userPicture: "/images/profile-image3.jpeg",
+        userName: "Victor P",
+        userId: "001",
+        addedToFavourite: false,
+        productName: "HP Elitebook",
+        productPicture: "/images/hp-laptop.png",
+        productPrice: 50000,
+        productId: "01"
+      },
+      {
+        userPicture: "/images/profile-image4.png",
+        userName: "Victor P",
+        userId: "001",
+        addedToFavourite: true,
+        productName: "HP Elitebook",
+        productPicture: "/images/hp-laptop.png",
+        productPrice: 50000,
+        productId: "01"
+      },
+      {
+        userPicture: "/images/profile-image3.jpeg",
+        userName: "Victor P",
+        userId: "001",
+        addedToFavourite: false,
+        productName: "HP Elitebook",
+        productPicture: "/images/hp-laptop.png",
+        productPrice: 50000,
+        productId: "01"
+      },
+      {
+        userPicture: "/images/img2.png",
+        userName: "Victor P",
+        userId: "001",
+        addedToFavourite: false,
+        productName: "HP Elitebook",
+        productPicture: "/images/hp-laptop.png",
+        productPrice: 50000,
+        productId: "01"
+      },
+      {
+        userPicture: "/images/profile-image2.jpeg",
+        userName: "Victor P",
+        userId: "001",
+        addedToFavourite: false,
+        productName: "HP Elitebook",
+        productPicture: "/images/hp-laptop.png",
+        productPrice: 50000,
+        productId: "01"
+      },
+      {
+        userPicture: "/images/profile-image4.png",
+        userName: "Victor P",
+        userId: "001",
+        addedToFavourite: true,
+        productName: "HP Elitebook",
+        productPicture: "/images/hp-laptop.png",
+        productPrice: 50000,
+        productId: "01"
+      }
+    ]
+  });
+
   const [currentImage, setCurrentImage] = useState("/images/laptop-pic1.jpeg");
 
   const [descriptions, setDescriptions] = useState([
@@ -49,6 +117,15 @@ export default function Home() {
   const [rating, setRating] = useState(4);
 
   const [ratingHovered, setRatingHovered] = useState(rating);
+
+  const [imageModal, showImageModal] = useState(false);
+
+  const [relevance, setRelevanceDropdown] = useState(false);
+
+  const toggleModalState = () => {
+    showImageModal(!imageModal);
+    console.log("Called");
+  };
 
   return (
     <div>
@@ -82,21 +159,48 @@ export default function Home() {
           <div className={`w-1/2`}>
             <div
               className={`rounded-[10px] mx-auto h-[200px] w-[320px] xl:h-[280px] xl:w-[450px] overflow-hidden`}
+              onClick={toggleModalState}
             >
               <Image
                 src={currentImage}
                 layout="intrinsic"
-                className={`rounded`}
+                className={`cursor-pointer`}
                 width={1000}
                 height={800}
               />
+
+              <div
+                onClick={toggleModalState}
+                className={`bg-black/[50%] fixed top-0 left-0 ${
+                  imageModal == true ? "block" : "hidden"
+                } z-50 w-full h-full outline-none overflow-x-hidden overflow-y-auto`}
+                id="exampleModalCenter"
+              >
+                <div className="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] w-6/12">
+                  <div className="border-none shadow-lg relative flex flex-col w-full bg-white bg-clip-padding rounded-md outline-none text-current">
+                    <div className="flex flex-shrink-0 items-center justify-end p-4 border-b border-gray-200 rounded-t-md">
+                      <button
+                        onClick={toggleModalState}
+                        className="bg-primary rounded text-white py-2 px-4"
+                      >
+                        Close
+                      </button>
+                    </div>
+                    <div className="modal-body h-[400px] relative p-4">
+                      <Image src={currentImage} layout="fill" />
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
             <div className={`flex gap-4 mt-5 justify-center items-center`}>
               {/* <button className={`border flex justify-center items-center w-14 h-20`}>
                             <FontAwesomeIcon icon={faCaretLeft} className={`text-xl`} />
                             </button> */}
 
-              <div className={`flex gap-4 md:w-[320px] xl:w-[450px] overflow-x-scroll`}>
+              <div
+                className={`flex gap-4 md:w-[320px] xl:w-[450px] overflow-x-scroll`}
+              >
                 <button
                   className={`flex items-center`}
                   onClick={() => {
@@ -157,13 +261,17 @@ export default function Home() {
                 className={`text-md text-blue-800`}
               />
             </div>
-            <div className={`md:text-md xl:text-xl`}>Product age: 2 months old</div>
+            <div className={`md:text-md xl:text-xl`}>
+              Product age: 2 months old
+            </div>
             <div className={`md:text-md xl:text-xl`}>Price: N95,500</div>
             <div className={`md:text-md xl:text-xl`}>
               Real estimated price:{" "}
               <span className={` text-red-600 line-through`}>N150,000</span>
             </div>
-            <div className={`md:text-md xl:text-xl`}>Condition: Working perfectly well</div>
+            <div className={`md:text-md xl:text-xl`}>
+              Condition: Working perfectly well
+            </div>
             <div className={`flex mt-6 md:gap-x-6 xl:gap-x-14`}>
               <button
                 className={`bg-primary text-white flex items-center justify-center py-2 md:px-10 xl:px-20 rounded-[15px]`}
@@ -260,68 +368,252 @@ export default function Home() {
         <div className={`mt-2`}>Rated</div>
 
         <div className={`flex gap-x-4 items-center`}>
+          <ul
+            className="flex justify-start my-2"
+            onMouseLeave={() => {
+              setRatingHovered(rating);
+            }}
+          >
+            {[{}, {}, {}, {}, {}].map((star, index) => {
+              return (
+                <div key={index}>
+                  {ratingHovered > index ? (
+                    <li>
+                      <svg
+                        aria-hidden="true"
+                        focusable="false"
+                        data-prefix="fas"
+                        data-icon="star"
+                        className="w-6 text-yellow mr-1"
+                        role="img"
+                        onMouseEnter={() => {
+                          setRatingHovered(index + 1);
+                        }}
+                        onClick={() => {
+                          setRating(index + 1);
+                        }}
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 576 512"
+                      >
+                        <path
+                          fill="currentColor"
+                          d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"
+                        ></path>
+                      </svg>
+                    </li>
+                  ) : (
+                    <li>
+                      <svg
+                        aria-hidden="true"
+                        focusable="false"
+                        data-prefix="far"
+                        data-icon="star"
+                        className="w-6 text-yellow mr-1"
+                        role="img"
+                        onMouseEnter={() => {
+                          setRatingHovered(index + 1);
+                        }}
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 576 512"
+                      >
+                        <path
+                          fill="currentColor"
+                          d="M528.1 171.5L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6zM388.6 312.3l23.7 138.4L288 385.4l-124.3 65.3 23.7-138.4-100.6-98 139-20.2 62.2-126 62.2 126 139 20.2-100.6 98z"
+                        ></path>
+                      </svg>
+                    </li>
+                  )}
+                </div>
+              );
+            })}
+          </ul>
 
-        <ul
-          className="flex justify-start my-2"
-          onMouseLeave={() => {
-            setRatingHovered(rating);
-          }}
-        >
-          {[{}, {}, {}, {}, {}].map((star, index) => {
-            return (
-              <div key={index}>
-                {ratingHovered > index ? (
-                  <li>
-                    <svg
-                      aria-hidden="true"
-                      focusable="false"
-                      data-prefix="fas"
-                      data-icon="star"
-                      className="w-6 text-yellow mr-1"
-                      role="img"
-                      onMouseEnter={() => {
-                        setRatingHovered(index + 1);
-                      }}
-                      onClick={() => {setRating(index + 1)}}
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 576 512"
-                    >
-                      <path
-                        fill="currentColor"
-                        d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"
-                      ></path>
-                    </svg>
-                  </li>
-                ) : (
-                  <li>
-                    <svg
-                      aria-hidden="true"
-                      focusable="false"
-                      data-prefix="far"
-                      data-icon="star"
-                      className="w-6 text-yellow mr-1"
-                      role="img"
-                      onMouseEnter={() => {setRatingHovered(index + 1)}}
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 576 512"
-                    >
-                      <path
-                        fill="currentColor"
-                        d="M528.1 171.5L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6zM388.6 312.3l23.7 138.4L288 385.4l-124.3 65.3 23.7-138.4-100.6-98 139-20.2 62.2-126 62.2 126 139 20.2-100.6 98z"
-                      ></path>
-                    </svg>
-                  </li>
-                )}
-              </div>
-            );
-          })}
-        </ul>
-
-            <div className={`font-bold text-xl`}>4.5</div>
+          <div className={`font-bold text-xl`}>4.5</div>
         </div>
 
-        
+        <div className={`flex`}>
+          <div className={`flex gap-x-20 items-center my-4`}>
+            <div>Reviews (10)</div>
+
+            <div>
+              <button
+                className="
+          dropdown-toggle
+          px-2
+          py-2.5
+          transition
+          duration-150
+          ease-in-out
+          flex
+          relative
+          items-center
+          whitespace-nowrap
+        "
+                type="button"
+                id="dropdownMenuButton1"
+                onClick={() => {
+                  setRelevanceDropdown(!relevance);
+                }}
+              >
+                Relevance
+                <svg
+                  aria-hidden="true"
+                  focusable="false"
+                  data-prefix="fas"
+                  data-icon="caret-down"
+                  className="w-2 ml-2"
+                  role="img"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 320 512"
+                >
+                  <path
+                    fill="currentColor"
+                    d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"
+                  ></path>
+                </svg>
+              </button>
+              <ul
+                className={`
+          dropdown-menu
+          absolute
+          min-w-max
+          absolute
+          block
+          bg-white
+          text-base
+          ${relevance == true ? "block" : "hidden"}
+          z-50
+          float-left
+          py-2
+          list-none
+          text-left
+          rounded-lg
+          shadow-lg
+          mt-1
+          m-0
+          bg-clip-padding
+          border-none
+        `}
+                aria-labelledby="dropdownMenuButton1"
+              >
+                <li>
+                  <a
+                    className="
+              dropdown-item
+              text-sm
+              py-2
+              px-4
+              font-normal
+              block
+              w-full
+              whitespace-nowrap
+              bg-transparent
+              text-gray-700
+              hover:bg-gray-100
+            "
+                    href="#"
+                  >
+                    Action
+                  </a>
+                </li>
+                <li>
+                  <a
+                    className="
+              dropdown-item
+              text-sm
+              py-2
+              px-4
+              font-normal
+              block
+              w-full
+              whitespace-nowrap
+              bg-transparent
+              text-gray-700
+              hover:bg-gray-100
+            "
+                    href="#"
+                  >
+                    Another action
+                  </a>
+                </li>
+                <li>
+                  <a
+                    className="
+              dropdown-item
+              text-sm
+              py-2
+              px-4
+              font-normal
+              block
+              w-full
+              whitespace-nowrap
+              bg-transparent
+              text-gray-700
+              hover:bg-gray-100
+            "
+                    href="#"
+                  >
+                    Something else here
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div>
+
+        </div>
+
+        <div className={`flex flex-col gap-y-6`}>
+
+          <div className={`flex flex-col`}>
+            <div className={`flex gap-x-4 items-center`}>
+                <Image 
+                  src={`/images/laptop-pic2.jpeg`}
+                  layout="intrinsic"
+                  className={`rounded-full`}
+                  width={40}
+                  height={40}
+                />
+                <div className={`my-2`}>Mary Kings</div>
+            </div>
+            <div>I love your products bro, old but gold</div>
+          </div>
+
+          <div className={`flex flex-col`}>
+          <div className={`flex gap-x-4 items-center`}>
+              <Image 
+                src={`/images/laptop-pic2.jpeg`}
+                layout="intrinsic"
+                className={`rounded-full`}
+                width={40}
+                height={40}
+              />
+              <div className={`my-2`}>Mary Kings</div>
+          </div>
+          <div>I love your products bro, old but gold</div>
+        </div>
+
+        <div className={`flex flex-col`}>
+          <div className={`flex gap-x-4 items-center`}>
+              <Image 
+                src={`/images/laptop-pic2.jpeg`}
+                layout="intrinsic"
+                className={`rounded-full`}
+                width={40}
+                height={40}
+              />
+              <div className={`my-2`}>Mary Kings</div>
+          </div>
+          <div>I love your products bro, old but gold</div>
+        </div>
+
+        </div>
+
       </div>
+      
+      <MoreLikeThis moreProducts={moreProducts} />
 
       <FooterComponent />
     </div>

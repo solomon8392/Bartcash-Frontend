@@ -5,7 +5,7 @@ import { faApple, faAppStore, faFacebook, faGooglePlay, faInstagram, faLinkedin,
 
 export default function Home({ auctionProps }) {
     return (
-        <div className={`mb-4`}>
+        <div className={`pb-6 pt-10`}>
             <div className={`bg-yellow text-primary text-center py-4 mb-2 font-bold font-[40px] mx-6`}>{auctionProps.productTitle}</div>
 
             <div className={`flex gap-4 xl:gap-10 ml-6 pr-6 overflow-x-auto`}>
