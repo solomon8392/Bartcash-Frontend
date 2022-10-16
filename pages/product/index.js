@@ -298,7 +298,7 @@ export default function Home() {
         <div className={`flex items-center gap-x-4 my-2`}>
           <button className={`flex items-center`}>
             <Image
-              src={`/images/facebook-logo.png`}
+              src={`/images/facebook.png`}
               layout="fixed"
               className={`rounded`}
               width={40}
@@ -308,21 +308,21 @@ export default function Home() {
 
           <button className={`flex items-center`}>
             <Image
-              src={`/images/whatsapp-logo.png`}
+              src={`/images/whatsapp.png`}
               layout="fixed"
               className={`rounded`}
-              width={46}
-              height={46}
+              width={40}
+              height={40}
             />
           </button>
 
           <button className={`flex items-center`}>
             <Image
-              src={`/images/instagram-logo.png`}
+              src={`/images/instagram.png`}
               layout="fixed"
               className={`rounded`}
-              width={50}
-              height={50}
+              width={40}
+              height={40}
             />
           </button>
         </div>
