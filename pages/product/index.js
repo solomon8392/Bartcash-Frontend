@@ -133,7 +133,7 @@ export default function Home() {
       <NavigationComponent />
 
       <div className={`flex w-full flex-col px-6 gap-y-4 py-4`}>
-        <div className={`flex w-full items-center justify-between`}>
+        <div className={`flex w-full items-center my-6 justify-between`}>
           <div className="flex items-center gap-x-4">
             <div className={`h-14 w-14`}>
               <Image
@@ -199,10 +199,10 @@ export default function Home() {
                             </button> */}
 
               <div
-                className={`flex gap-4 md:w-[320px] xl:w-[450px] overflow-x-scroll`}
+                className={`flex gap-4 md:w-[320px] xl:w-[450px] overflow-x-auto`}
               >
                 <button
-                  className={`flex items-center`}
+                  className={`flex flex-col gap-y-2 mb-2 items-center`}
                   onClick={() => {
                     setCurrentImage("/images/laptop-pic1.jpeg");
                   }}
@@ -214,10 +214,13 @@ export default function Home() {
                     width={100}
                     height={75}
                   />
+                  {currentImage == "/images/laptop-pic1.jpeg" ? (
+                    <div className={`w-10 h-2 bg-yellow`}></div>
+                  ) : ""}
                 </button>
 
                 <button
-                  className={`flex items-center`}
+                  className={`flex flex-col gap-y-2 mb-2 items-center`}
                   onClick={() => {
                     setCurrentImage("/images/laptop-pic2.jpeg");
                   }}
@@ -229,10 +232,13 @@ export default function Home() {
                     width={100}
                     height={75}
                   />
+                  {currentImage == "/images/laptop-pic2.jpeg" ? (
+                    <div className={`w-10 h-2 bg-yellow`}></div>
+                  ) : ""}
                 </button>
 
                 <button
-                  className={`flex items-center`}
+                  className={`flex flex-col gap-y-2 mb-2 items-center`}
                   onClick={() => {
                     setCurrentImage("/images/laptop-img3.jpg");
                   }}
@@ -244,6 +250,9 @@ export default function Home() {
                     width={100}
                     height={75}
                   />
+                  {currentImage == "/images/laptop-img3.jpg" ? (
+                    <div className={`w-10 h-2 bg-yellow`}></div>
+                  ) : ""}
                 </button>
               </div>
 
@@ -336,8 +345,8 @@ export default function Home() {
         </div>
 
         <div className="flex flex-col">
-          <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
-            <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+          <div className="overflow-x-auto">
+            <div className="py-2 inline-block min-w-full">
               <div className="overflow-hidden">
                 <table className="border min-w-fit text-left">
                   <tbody>
@@ -561,16 +570,12 @@ export default function Home() {
           </div>
         </div>
 
-        <div>
-
-        </div>
-
-        <div className={`flex flex-col gap-y-6`}>
+        <div className={`flex  flex-col gap-y-6`}>
 
           <div className={`flex flex-col`}>
-            <div className={`flex gap-x-4 items-center`}>
+            <div className={`flex gap-x-2 items-center`}>
                 <Image 
-                  src={`/images/laptop-pic2.jpeg`}
+                  src={`/images/profile-image2.jpeg`}
                   layout="intrinsic"
                   className={`rounded-full`}
                   width={40}
@@ -582,9 +587,9 @@ export default function Home() {
           </div>
 
           <div className={`flex flex-col`}>
-          <div className={`flex gap-x-4 items-center`}>
+          <div className={`flex gap-x-2 items-center`}>
               <Image 
-                src={`/images/laptop-pic2.jpeg`}
+                src={`/images/profile-image3.jpeg`}
                 layout="intrinsic"
                 className={`rounded-full`}
                 width={40}
@@ -596,9 +601,9 @@ export default function Home() {
         </div>
 
         <div className={`flex flex-col`}>
-          <div className={`flex gap-x-4 items-center`}>
+          <div className={`flex gap-x-2 items-center`}>
               <Image 
-                src={`/images/laptop-pic2.jpeg`}
+                src={`/images/profile-image4.png`}
                 layout="intrinsic"
                 className={`rounded-full`}
                 width={40}
