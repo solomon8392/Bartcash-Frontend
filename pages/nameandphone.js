@@ -55,7 +55,7 @@ export default function Home() {
         console.log("Signup");
 
         if(password != confirmPassword) {
-            console.log("Passwords don't match!");
+            console.log("Passwords don&apos;t match!");
             return
         } else if(password.length > 8) {
             console.log("Password is too short");
@@ -96,7 +96,7 @@ export default function Home() {
             <Image src={profilePic} layout='intrinsic' className='rounded-full' width={100} height={100} />
             <div className={`absolute right-[10px] bottom-[10px] h-[20px] w-[20px]`}>
             <input placeholder='Enter your full name' id="fileInput" onChange={(e) => {changePicture(e.target.files[0])}} type={`file`} className={`border hidden rounded-[10px] p-2 mb-4 w-full`} />
-            <label for="fileInput" className={`h-[25px] w-[25px] flex justify-center cursor-pointer items-center block rounded-full bg-primary text-white`}>
+            <label htmlFor="fileInput" className={`h-[25px] w-[25px] flex justify-center cursor-pointer items-center block rounded-full bg-primary text-white`}>
                 <FontAwesomeIcon icon={faCamera} className={`text-[10px] md:text-[12px]`} />
             </label>
             </div>

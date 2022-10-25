@@ -15,7 +15,7 @@ export default function Home() {
         var filterRegex = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
 
     if (!filterRegex.test(email)) {
-        console.log("Email isn't valid");
+        console.log("Email isn&apos;t valid");
         return false;
     }
 
