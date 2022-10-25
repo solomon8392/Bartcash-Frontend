@@ -29,7 +29,8 @@ export default function Home() {
             const pictureForm = await axios.put("auth/uploadprofilepic", formdata);
     
             console.log(pictureForm);
-            setProfilePic(process.env.NEXT_PUBLIC_BASEURL.slice(0, 21) + pictureForm.data.slice(6));
+            setProfilePic(process.env.NEXT_PUBLIC_BASEURL.slice(0, 30) + pictureForm.data.slice(6));
+            // setProfilePic(process.env.NEXT_PUBLIC_BASEURL.slice(0, 21) + pictureForm.data.slice(6));
         } catch (error) {
             console.log(error);
         }
