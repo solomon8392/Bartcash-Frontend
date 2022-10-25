@@ -272,8 +272,8 @@ export default function Home({loggedinState}) {
 
         <div className={`${loggedinState == true ? "flex" : "hidden"}  justify-end w-full gap-2 xl:gap-6`}>
             <div className={`flex items-center gap-x-2 text-bold text-2xl`}>
-              {userProfile.data.fullName}
-          <Image src={process.env.NEXT_PUBLIC_BASEURL.slice(0, 21) + "/" + userProfile.data.profilePicUrl.slice(6)} className={`rounded-full`} layout='fixed'  width={50} height={50} />
+              {!userProfile.data.fullName ? "" : userProfile.data.fullName}
+          <Image src={!userProfile.data.profilePicUrl ? "/images/profilepic_avatar.png" : process.env.NEXT_PUBLIC_BASEURL.slice(0, 21) + "/" + userProfile.data.profilePicUrl.slice(6)} className={`rounded-full`} layout='fixed'  width={50} height={50} />
           {console.log(process.env.NEXT_PUBLIC_BASEURL.slice(0, 21) + "/" + userProfile.data.profilePicUrl)}
           </div>
         </div>
