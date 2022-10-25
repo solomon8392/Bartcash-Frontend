@@ -1,20 +1,47 @@
 
 import Image from 'next/image';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useRouter } from "next/router";
+import Link from "next/link";
+import axios from "axios";
 
-export default function Home() {
+export default function Home({loggedinState}) {
 
+  const router = useRouter();
   const [hide, setHide] = useState(true);
   const [search, setSearch] = useState("");
+  const [userProfile, setUserProfile] = useState({});
+
+  useEffect(() => {
+    getProfile();
+  }, []);
+
+  const getProfile = async () => {
+    try {
+      const u = await axios.get("user/profile", {
+        headers: {
+          accesstoken: localStorage.getItem("authtoken")
+        }
+      });
+      console.log(u);
+      setUserProfile(u);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
     return (
         <div className={`w-full flex px-6 gap-4 xl:gap-10 relative items-center justify-between py-2`}>
-          <div className={`block md:hidden`}>
+          <Link href="/">
+            <div>
+            <div className={`block md:hidden`}>
           <Image src={`/images/logo.png`} layout='fixed'  width={80} height={40} />
           </div>
           <div className={`hidden md:block`}>
             <Image src={`/images/logo.png`} layout={`fixed`} width={120} height={60} />
           </div>
+            </div>
+          </Link>
           <div className="flex justify-center absolute left-[50%] z-50 translate-x-[-50%] w-fit">
             <div className="xl:w-[600px] hidden md:block">
               <div className="input-group relative flex w-full rounded overflow-hidden">
@@ -110,7 +137,8 @@ export default function Home() {
               </div>
             </div>
         </div>
-        <div className={`flex justify-end w-full gap-2 xl:gap-6`}>
+        {console.log(loggedinState)}
+        <div className={` ${loggedinState == false ? "flex" : "hidden"}  justify-end w-full gap-2 xl:gap-6`}>
         <button className={`p-2 block md:hidden rounded-full text-primary`}>
         <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" className="w-4" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                     <path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"></path>
@@ -238,8 +266,16 @@ export default function Home() {
     </div>
   </div>
 </div>
-        <button className={``}>Login</button>
-        <button className={`flex flex-nowrap items-center justify-center w-[80px] p-1 rounded-[20px] bg-primary text-white`}>Sign Up</button>
+        <button className={``} onClick={() => {router.push("/login")}}>Login</button>
+        <button className={`flex flex-nowrap items-center justify-center w-[80px] p-1 rounded-[20px] bg-primary text-white`} onClick={() => {router.push("/signup")}}>Sign Up</button>
+        </div>
+
+        <div className={`${loggedinState == true ? "flex" : "hidden"}  justify-end w-full gap-2 xl:gap-6`}>
+            <div className={`flex items-center gap-x-2 text-bold text-2xl`}>
+              {userProfile.data.fullName}
+          <Image src={process.env.NEXT_PUBLIC_BASEURL.slice(0, 21) + "/" + userProfile.data.profilePicUrl.slice(6)} className={`rounded-full`} layout='fixed'  width={50} height={50} />
+          {console.log(process.env.NEXT_PUBLIC_BASEURL.slice(0, 21) + "/" + userProfile.data.profilePicUrl)}
+          </div>
         </div>
         
       </div>

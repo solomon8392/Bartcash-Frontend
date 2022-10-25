@@ -1,6 +1,33 @@
 import Image from 'next/image';
+import { useRouter } from "next/router";
+import { useState } from 'react';
+import axios from "axios";
 
 export default function Home() {
+
+    const router = useRouter();
+
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+    const login = async () => {
+        try {
+            const response = await axios.post("auth/login", {
+                email, password
+            });
+
+            console.log(response);
+            if(response.status == 200) {
+                localStorage.setItem("authtoken", `${response.data.tokentype} ${response.data.token}`);
+                router.push("/");
+            }
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+
     return (
         <div className={`h-screen w-full`}>
             <div className={`absolute left-[50%] top-[50%] translate-y-[-50%] translate-x-[-50%] flex flex-col text-center justify-center w-10/12 md:w-6/12 xl:w-4/12`}>
@@ -12,16 +39,16 @@ export default function Home() {
 
             <div className={`flex text-left mb-2 flex-col`}>
                 <label className={`mb-1`}>Email</label>
-                <input placeholder='Enter email' type={`email`} className={`border rounded-[10px] p-2 mb-4 w-full`} />
+                <input placeholder='Enter email' type={`email`} onChange={(e) => {setEmail(e.target.value)}} className={`border rounded-[10px] p-2 mb-4 w-full`} />
             </div>
 
             <div className={`flex text-left mb-2 flex-col`}>
                 <label className={`mb-1`}>Password</label>
-                <input placeholder='Enter password' type={`password`} className={`border rounded-[10px] p-2 mb-2 w-full`} />
-                <button className={`text-xs text-primary ml-auto`}>Forgot Password?</button>
+                <input placeholder='Enter password' type={`password`} onChange={(e) => {setPassword(e.target.value)}} className={`border rounded-[10px] p-2 mb-2 w-full`} />
+                <button className={`text-xs text-primary ml-auto`} onClick={() => {router.push("/forgotpassword")}}>Forgot Password?</button>
             </div>
-            <button className={`p-2 px-3 text-white bg-primary text-sm rounded-[10px] w-fit mx-auto mb-4`}>Log in</button>
-            <div className={`mb-2`}>Already have an account? <button className={`text-primary`}>Sign Up</button></div>
+            <button className={`p-2 px-3 text-white bg-primary text-sm rounded-[10px] w-fit mx-auto mb-4`} onClick={login}>Log in</button>
+            <div className={`mb-2`}>Already have an account? <button className={`text-primary`} onClick={() => {router.push("/signup")}}>Sign Up</button></div>
             <div className={`mb-2`}>OR</div>
             <div className={`flex justify-center gap-x-10`}>
                 <button>

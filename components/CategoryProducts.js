@@ -12,7 +12,7 @@ export default function Home({ productsProps }) {
 
     return(
         <div className={`w-full px-6 pb-6 pt-10`}>
-        <div className={`bg-yellow text-primary text-center py-4 mb-2 font-bold font-[40px]`}>{products.productTitle}</div>
+        {/* <div className={`bg-yellow text-primary text-center py-4 mb-2 font-bold font-[40px]`}>{products.productTitle}</div> */}
         <div className={`grid grid-cols-2 md:grid-cols-12 gap-y-10 gap-x-14 xl:gap-x-8 w-full my-10`}>
 
         {!products ? (
@@ -20,7 +20,7 @@ export default function Home({ productsProps }) {
                 No Product
             </div>
         ) : (
-          products.products.map((product, index) => {
+            products.products.map((product, index) => {
             return (
                 <div key={index} className={`col-span-2 md:col-span-4 xl:col-span-2 border border-[1px] border-solid p-2 border-yellow rounded-[20px]`}>
             <div className={`flex items-center justify-between rounded-[20px]`}>
@@ -47,7 +47,6 @@ export default function Home({ productsProps }) {
           </div>
             );
         })
-          
         )}
 
         

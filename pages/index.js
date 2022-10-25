@@ -10,10 +10,21 @@ import CarouselComponent from "../components/Carousel";
 import ProductsComponent from "../components/Products";
 import FooterComponent from "../components/Footer";
 import AuctionComponent from "../components/Auction";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import checkLoggedIn from "../utilities/checkifloggedin";
 
 export default function Home() {
 
+  const [loginState, setLoginState] = useState(false);
+
+  const checkLogIn = async () => {
+    const l = await checkLoggedIn();
+    setLoginState(l);
+  }
+
+  useEffect(function() {
+    checkLogIn();
+  }, []);
   
   const [carProps, setCarousel] = useState([
     {
@@ -580,7 +591,7 @@ export default function Home() {
         <title>BartCash</title>
       </Head>
 
-      <HeaderComponent />
+      <HeaderComponent loggedinState={loginState} />
 
       <hr />
 

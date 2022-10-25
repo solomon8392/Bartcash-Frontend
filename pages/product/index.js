@@ -26,10 +26,22 @@ import Liked from "../../components/hearts/Liked";
 import NotLiked from "../../components/hearts/NotLiked";
 import Image from "next/image";
 import { faMessage } from "@fortawesome/free-regular-svg-icons";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import MoreLikeThis from "../../components/MoreLikeThis"
+import checkLoggedIn from "../../utilities/checkifloggedin";
 
 export default function Home() {
+
+  const [loginState, setLoginState] = useState(false);
+
+  useEffect(function() {
+    checkLogIn();
+  }, []);
+
+  const checkLogIn = async () => {
+    const l = await checkLoggedIn();
+    setLoginState(l);
+  }
 
   const [moreProducts, setMoreProducts] = useState({
     productTitle: "More Like This",
@@ -134,21 +146,21 @@ export default function Home() {
 
       <div className={`flex w-full flex-col px-6 gap-y-4 py-4`}>
         <div className={`flex w-full items-center my-6 justify-between`}>
-          <div className="flex items-center gap-x-4">
-            <div className={`h-14 w-14`}>
+          <div className="flex items-center gap-x-2">
+            <div className={`h-10 w-10`}>
               <Image
                 src={`/images/img3.png`}
                 layout="responsive"
                 className={`rounded-full`}
-                width={100}
-                height={100}
+                width={50}
+                height={50}
               />
             </div>
             <div>Jerry Martins</div>
             <div
-              className={`flex items-center text-white bg-primary justify-center w-6 h-6 rounded-full`}
+              className={`flex items-center text-white bg-[#006FD6] justify-center w-4 h-4 rounded-full`}
             >
-              <FontAwesomeIcon icon={faCheck} className={`text-md`} />
+              <FontAwesomeIcon icon={faCheck} className={`text-sm`} />
             </div>
             {/* <FontAwesomeIcon icon={faIdBadge} className={`w-8 h-8 hover:text-yellow`} /> */}
           </div>
@@ -267,7 +279,7 @@ export default function Home() {
               RAM 256GB SSD(402Z2EA){" "}
               <FontAwesomeIcon
                 icon={faShield}
-                className={`text-md text-blue-800`}
+                className={`text-md text-[#006FD6]`}
               />
             </div>
             <div className={`md:text-md xl:text-xl`}>
