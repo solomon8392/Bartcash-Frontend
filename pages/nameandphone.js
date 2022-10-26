@@ -40,6 +40,8 @@ export default function Home() {
                 sliceNum = 21;
             }
 
+            console.log(process.env.NEXT_PUBLIC_BASEURL.slice(0, sliceNum));
+
             setProfilePic(process.env.NEXT_PUBLIC_BASEURL.slice(0, sliceNum) + pictureForm.data.slice(6));
         } catch (error) {
             console.log(error);
