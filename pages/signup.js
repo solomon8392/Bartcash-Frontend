@@ -43,9 +43,49 @@ export default function Home() {
     
             if(response.status == 200) {
                 router.push("/verificationemailsent");
+                return;
             }
         } catch (error) {
             console.log(error);
+
+            if(error.response.status == 409) {
+                
+                toast.warning('You already have an acoount.', {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
+
+                setTimeout(() => {
+                    router.push("/login");
+                }, 2000);
+                return;
+            }
+
+            // if(error.response.status == 302) {
+
+            //     toast.warning('You already have an acoount.', {
+            //         position: "top-center",
+            //         autoClose: 5000,
+            //         hideProgressBar: false,
+            //         closeOnClick: true,
+            //         pauseOnHover: true,
+            //         draggable: true,
+            //         progress: undefined,
+            //         theme: "light",
+            //     });
+
+            //     setTimeout(() => {
+            //         router.push("/login");
+            //     }, 2000);
+            //     return;
+            // }
+
             toast.error('An error occurred!', {
                 position: "top-center",
                 autoClose: 5000,
@@ -77,7 +117,7 @@ export default function Home() {
 
             <div className={`flex text-left mb-2 flex-col`}>
                 <label className={`mb-1`}>Password</label>
-                <input placeholder='Enter password' onChange={(e) => {setPassword(e.target.value)}} type={`text`} className={`border rounded-[10px] p-2 mb-4 w-full`} />
+                <input placeholder='Enter password' onChange={(e) => {setPassword(e.target.value)}} type={`password`} className={`border rounded-[10px] p-2 mb-4 w-full`} />
             </div>
 
             {/* <div className={`flex text-left mb-2 flex-col`}>
