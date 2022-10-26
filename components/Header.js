@@ -293,6 +293,7 @@ export default function Home({loggedinState}) {
               <button className={`bg-primary text-white p-1 rounded`} onClick={logOut}>Log Out</button>
           <Image src={process.env.NEXT_PUBLIC_BASEURL.slice(0, sliceNum) + userProfile.data.profilePicUrl.slice(6)} className={`rounded-full`} layout='fixed'  width={40} height={40} />
               {userProfile.data.fullName}
+              {console.log(process.env.NEXT_PUBLIC_BASEURL.slice(0, sliceNum) + userProfile.data.profilePicUrl.slice(6))} 
           </div>
         </div>
         
