@@ -6,6 +6,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faCamera, faCheck, faRibbon } from '@fortawesome/free-solid-svg-icons';
 import { faApple, faAppStore, faFacebook, faGooglePlay, faInstagram, faLinkedin, faTwitter } from "@fortawesome/free-brands-svg-icons";
 import { useRouter } from 'next/router';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Home() {
 
@@ -29,8 +31,16 @@ export default function Home() {
             const pictureForm = await axios.put("auth/uploadprofilepic", formdata);
     
             console.log(pictureForm);
-            setProfilePic(process.env.NEXT_PUBLIC_BASEURL.slice(0, 30) + pictureForm.data.slice(6));
-            // setProfilePic(process.env.NEXT_PUBLIC_BASEURL.slice(0, 21) + pictureForm.data.slice(6));
+
+            let sliceNum;
+
+            if(process.env.NEXT_PUBLIC_BASEURL == "https://bartcash.netlify.app/") {
+                sliceNum = 30;
+            } else {
+                sliceNum = 21;
+            }
+
+            setProfilePic(process.env.NEXT_PUBLIC_BASEURL.slice(0, sliceNum) + pictureForm.data.slice(6));
         } catch (error) {
             console.log(error);
         }
@@ -76,6 +86,16 @@ export default function Home() {
 
         } catch (error) {
             console.log(error);
+            toast.error('An error occurred!', {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
         }
 
     }
@@ -83,6 +103,7 @@ export default function Home() {
 
     return (
         <div className={`h-screen flex flex-row justify-between gap-x-6 w-full px-6 py-10`}>
+            <ToastContainer />
             <div className={`h-[400px] w-[400px] xl:h-[600px] xl:w-[600px] 2xl:h-[900px] 2xl:w-[900px] hidden md:block my-auto`}>
             <Image src={"/images/create-account-pic.png"} layout={"intrinsic"} width={800} height={800} />
             </div>

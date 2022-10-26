@@ -2,6 +2,8 @@ import Image from 'next/image';
 import { useRouter } from "next/router";
 import { useState } from 'react';
 import axios from "axios";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Home() {
 
@@ -24,12 +26,23 @@ export default function Home() {
 
         } catch (error) {
             console.log(error);
+            toast.error('An error occurred!', {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
         }
     }
 
 
     return (
         <div className={`h-screen w-full`}>
+            <ToastContainer />
             <div className={`absolute left-[50%] top-[50%] translate-y-[-50%] translate-x-[-50%] flex flex-col text-center justify-center w-10/12 md:w-6/12 xl:w-4/12`}>
             <div className={`w-[80px] h-[50px] flex mx-auto`}>
             <Image src={`/images/logo.png`} layout='intrinsic'  width={150} height={100} />

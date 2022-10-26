@@ -36,11 +36,11 @@ export default function Home() {
       </div>)
     },
     {
-      url: "65aecca1f6488041a9f221f84fe1b12e.jpeg",
+      url: "windowsphone.jpg",
       writeup: ``
     },
     {
-      url: "65aecca1f6488041a9f221f84fe1b12e.jpeg",
+      url: "library.jpg",
       writeup: ``
     }
     ]);

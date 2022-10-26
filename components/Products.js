@@ -5,6 +5,7 @@ import { faBars, faTag, faHeart, faArrowRightArrowLeft  } from '@fortawesome/fre
 import far from '@fortawesome/free-regular-svg-icons';
 import Liked from "./hearts/Liked";
 import NotLiked from "./hearts/NotLiked";
+import { AiOutlineSwap } from "react-icons/ai";
 
 export default function Home({ productsProps }) {
 
@@ -43,7 +44,7 @@ export default function Home({ productsProps }) {
             <div className={`flex justify-center font-semibold text-[14px] items-center`}>N{product.productPrice} <FontAwesomeIcon icon={faTag} className={`w-4 h-6 text-primary ml-2`} /></div>
             </div>
 
-            <button className={`text-center w-full bg-primary flex items-center justify-center font-bold rounded-[20px] py-2 text-white text-[14px]`}>Swap <FontAwesomeIcon icon={faArrowRightArrowLeft} className={`w-4 h-6 text-white ml-2`} /></button>
+            <button className={`text-center w-full bg-primary flex items-center justify-center font-bold rounded-[20px] py-2 text-white text-[14px]`}>Swap <AiOutlineSwap className={`text-white text-[20px] ml-2`} /></button>
           </div>
             );
         })

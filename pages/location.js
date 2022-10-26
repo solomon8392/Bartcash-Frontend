@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react';
 import axios from "axios";
 import countries from "../utilities/countries"
 import { useRouter } from "next/router";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Home() {
 
@@ -34,10 +36,30 @@ export default function Home() {
                     router.push("/signupsuccess");
                 } else {
                     console.log("Something went wrong!");
+                    toast.error('An error occurred!', {
+                        position: "top-center",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
+                    });
                 }
 
             } catch (error) {
                 console.log(error);
+                toast.error('An error occurred!', {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
             }
         }
     }
@@ -45,6 +67,7 @@ export default function Home() {
 
     return (
         <div className={`h-screen flex flex-row justify-between gap-x-6 w-full py-10 px-6`}>
+            <ToastContainer />
             <div className={`h-[400px] w-[400px] xl:h-[600px] xl:w-[600px] 2xl:h-[900px] 2xl:w-[900px] hidden md:block my-auto`}>
             <Image src={"/images/location.png"} layout={"intrinsic"} width={800} height={800} />
             </div>

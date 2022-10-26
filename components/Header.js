@@ -10,7 +10,12 @@ export default function Home({loggedinState}) {
   const router = useRouter();
   const [hide, setHide] = useState(true);
   const [search, setSearch] = useState("");
-  const [userProfile, setUserProfile] = useState({});
+  const [userProfile, setUserProfile] = useState({
+    data: {
+      fullName: "",
+      profilePicUrl: "public/images/profilepic_avatar.png"
+    }
+  });
 
   useEffect(() => {
     getProfile();
@@ -35,18 +40,18 @@ export default function Home({loggedinState}) {
           <Link href="/">
             <div>
             <div className={`block md:hidden`}>
-          <Image src={`/images/logo.png`} layout='fixed'  width={80} height={40} />
+          <Image src={`/images/logo.png`} layout='fixed' className='hover:cursor-pointer'  width={80} height={40} />
           </div>
           <div className={`hidden md:block`}>
-            <Image src={`/images/logo.png`} layout={`fixed`} width={120} height={60} />
+            <Image src={`/images/logo.png`} layout={`fixed`} className='hover:cursor-pointer' width={120} height={60} />
           </div>
             </div>
           </Link>
           <div className="flex justify-center absolute left-[50%] z-50 translate-x-[-50%] w-fit">
             <div className="xl:w-[600px] hidden md:block">
-              <div className="input-group relative flex w-full rounded overflow-hidden">
+              <div className="relative flex w-full rounded">
                 <input type="search" onChange={(e) => {setSearch(e.target.value)}} className="form-control relative flex-auto block px-3 py-1.5 text-base font-normal bg-gray-200 text-gray-700 bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-gray-100 focus:outline-none" placeholder="Search for product, category" />
-                <button className="btn inline-block px-4 ml-[-10px] z-10 py-2.5 bg-yellow text-primary font-medium text-xs leading-tight uppercase rounded-r-lg hover:text-white hover:shadow-lg focus:bg-blue-700  focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out flex items-center" type="button" id="button-addon2">
+                <button className="inline-block px-4 ml-[-10px] z-10 py-2.5 bg-yellow text-primary font-medium text-xs leading-tight uppercase rounded-r-md hover:text-white hover:shadow-lg focus:bg-blue-700  focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out flex items-center" type="button" id="button-addon2">
                   <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" className="w-4" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                     <path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"></path>
                   </svg>
@@ -61,7 +66,6 @@ export default function Home({loggedinState}) {
           bg-white
           border
           xl:w-[600px]
-
           text-base
           ${search.length < 3 ? "hidden": "block"}
           float-left
@@ -271,9 +275,9 @@ export default function Home({loggedinState}) {
         </div>
 
         <div className={`${loggedinState == true ? "flex" : "hidden"}  justify-end w-full gap-2 xl:gap-6`}>
-            <div className={`flex items-center gap-x-2 text-bold text-2xl`}>
-              {/* {!userProfile.data.fullName ? "" : userProfile.data.fullName} */}
-          {/* <Image src={!userProfile.data.profilePicUrl ? "/images/profilepic_avatar.png" : process.env.NEXT_PUBLIC_BASEURL.slice(0, 21) + "/" + userProfile.data.profilePicUrl.slice(6)} className={`rounded-full`} layout='fixed'  width={50} height={50} /> */}
+            <div className={`flex items-center gap-x-2 text-bold text-xl`}>
+              {userProfile.data.fullName}
+          <Image src={process.env.NEXT_PUBLIC_BASEURL.slice(0, 21) + "/" + userProfile.data.profilePicUrl.slice(6)} className={`rounded-full`} layout='fixed'  width={40} height={40} />
           </div>
         </div>
         

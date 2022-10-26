@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react';
 import axios from "axios";
 import countries from "../utilities/countries"
 import { useRouter } from 'next/router';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Home() {
 
@@ -21,16 +23,39 @@ export default function Home() {
     }
 
         if(password.length < 8) {
-            console.log("Password is too short");
+            toast.warn('Password is to short', {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                });
             return;
         }
 
-        const response = await axios.post("auth/nameandemail", {email, password});
-
-        console.log(response);
-
-        if(response.status == 200) {
-            router.push("/verificationemailsent");
+        try {
+            const response = await axios.post("auth/nameandemail", {email, password});
+    
+            console.log(response);
+    
+            if(response.status == 200) {
+                router.push("/verificationemailsent");
+            }
+        } catch (error) {
+            console.log(error);
+            toast.error('An error occurred!', {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
         }
 
     }
@@ -38,7 +63,7 @@ export default function Home() {
 
     return (
         <div className={`h-screen flex flex-row justify-between w-full`}>
-            
+            <ToastContainer />
             <div className={`mx-auto py-4 flex flex-col text-center justify-center w-11/12 md:w-6/12 xl:w-4/12`}>
             <div className={`w-[100px] h-[50px] flex mx-auto`}>
             <Image src={`/images/logo.png`} layout='intrinsic'  width={150} height={100} />
