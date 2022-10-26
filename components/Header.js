@@ -36,10 +36,10 @@ export default function Home({loggedinState}) {
       setUserProfile(u);
 
       if(process.env.NEXT_PUBLIC_BASEURL == "https://bartcash.onrender.com/v1/") {
-                setSliceNum(29);
-            } else {
-              setSliceNum(21);
-            }
+        setSliceNum(29);
+      } else {
+        setSliceNum(21);
+      }
 
       console.log(process.env.NEXT_PUBLIC_BASEURL.slice(0, 29) + userProfile.data.profilePicUrl.slice(6));
     } catch (error) {
@@ -65,6 +65,7 @@ export default function Home({loggedinState}) {
             </div>
           </Link>
           <div className="flex justify-center absolute left-[50%] z-50 translate-x-[-50%] w-fit">
+            {userProfile.data.profilePicUrl.slice(6)}
             <div className="xl:w-[600px] hidden md:block">
               <div className="relative flex w-full rounded">
                 <input type="search" onChange={(e) => {setSearch(e.target.value)}} className="form-control relative flex-auto block px-3 py-1.5 text-base font-normal bg-gray-200 text-gray-700 bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:text-gray-700 focus:bg-gray-100 focus:outline-none" placeholder="Search for product, category" />
