@@ -11,6 +11,7 @@ const checkLoggedIn = async () => {
       if(isLoggedIn.status == 200 && isLoggedIn.data.role == "user" && isLoggedIn.data.emailVerified == true) {
         return true;
       } else {
+        localStorage.removeItem("authtoken");
         return false;
       }
     }
