@@ -39,10 +39,8 @@ export default function Home({loggedinState}) {
         }
       });
       console.log(u);
-
-      console.log(process.env.NEXT_PUBLIC_BASEURL.slice(0, 29) + userProfile.data.profilePicUrl.slice(6));
-
       setUserProfile(u);
+      console.log(process.env.NEXT_PUBLIC_BASEURL.slice(0, 29) + userProfile.data.profilePicUrl.slice(6));
     } catch (error) {
       console.log(error);
     }
