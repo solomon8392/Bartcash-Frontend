@@ -34,7 +34,7 @@ export default function Home() {
 
             let sliceNum;
 
-            if(process.env.NEXT_PUBLIC_BASEURL == "https://bartcash.netlify.app/") {
+            if(process.env.NEXT_PUBLIC_BASEURL == "https://bartcash.onrender.com/v1/") {
                 sliceNum = 30;
             } else {
                 sliceNum = 21;
