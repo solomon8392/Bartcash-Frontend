@@ -35,7 +35,7 @@ export default function Home() {
             let sliceNum;
 
             if(process.env.NEXT_PUBLIC_BASEURL == "https://bartcash.onrender.com/v1/") {
-                sliceNum = 31;
+                sliceNum = 29;
             } else {
                 sliceNum = 21;
             }
