@@ -17,8 +17,17 @@ export default function Home({loggedinState}) {
     }
   });
 
+  const [sliceNum, setSliceNum] = useState("");
+
   useEffect(() => {
     getProfile();
+
+    if(process.env.NEXT_PUBLIC_BASEURL == "https://bartcash.onrender.com/v1/") {
+                ssetSliceNum(29);
+            } else {
+              setSliceNum(21);
+            }
+
   }, []);
 
   const getProfile = async () => {
@@ -282,7 +291,7 @@ export default function Home({loggedinState}) {
         <div className={`${loggedinState == true ? "flex" : "hidden"}  justify-end w-full gap-2 xl:gap-6`}>
             <div className={`flex items-center gap-x-2 text-bold text-xl`}>
               <button className={`bg-primary text-white p-1 rounded`} onClick={logOut}>Log Out</button>
-          <Image src={process.env.NEXT_PUBLIC_BASEURL.slice(0, 21) + "/" + userProfile.data.profilePicUrl.slice(6)} className={`rounded-full`} layout='fixed'  width={40} height={40} />
+          <Image src={process.env.NEXT_PUBLIC_BASEURL.slice(0, sliceNum) + userProfile.data.profilePicUrl.slice(6)} className={`rounded-full`} layout='fixed'  width={40} height={40} />
               {userProfile.data.fullName}
           </div>
         </div>
