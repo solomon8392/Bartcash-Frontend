@@ -41,6 +41,7 @@ export default function Home() {
             }
 
             console.log(process.env.NEXT_PUBLIC_BASEURL.slice(0, sliceNum));
+            console.log(pictureForm.data.slice(6));
 
             setProfilePic(process.env.NEXT_PUBLIC_BASEURL.slice(0, sliceNum) + pictureForm.data.slice(6));
         } catch (error) {
