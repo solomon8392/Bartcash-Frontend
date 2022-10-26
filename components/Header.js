@@ -65,6 +65,7 @@ export default function Home({loggedinState}) {
             </div>
           </Link>
           <div className="flex justify-center absolute left-[50%] z-50 translate-x-[-50%] w-fit">
+            {process.env.NEXT_PUBLIC_BASEURL.slice(0, 29)}
             {userProfile.data.profilePicUrl.slice(6)}
             <div className="xl:w-[600px] hidden md:block">
               <div className="relative flex w-full rounded">
