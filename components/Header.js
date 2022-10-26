@@ -23,7 +23,7 @@ export default function Home({loggedinState}) {
     getProfile();
 
     if(process.env.NEXT_PUBLIC_BASEURL == "https://bartcash.onrender.com/v1/") {
-                ssetSliceNum(29);
+                setSliceNum(29);
             } else {
               setSliceNum(21);
             }
