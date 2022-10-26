@@ -22,12 +22,6 @@ export default function Home({loggedinState}) {
   useEffect(() => {
     getProfile();
 
-    if(process.env.NEXT_PUBLIC_BASEURL == "https://bartcash.onrender.com/v1/") {
-                setSliceNum(29);
-            } else {
-              setSliceNum(21);
-            }
-
   }, []);
 
   const getProfile = async () => {
@@ -40,6 +34,13 @@ export default function Home({loggedinState}) {
       });
       console.log(u);
       setUserProfile(u);
+
+      if(process.env.NEXT_PUBLIC_BASEURL == "https://bartcash.onrender.com/v1/") {
+                setSliceNum(29);
+            } else {
+              setSliceNum(21);
+            }
+
       console.log(process.env.NEXT_PUBLIC_BASEURL.slice(0, 29) + userProfile.data.profilePicUrl.slice(6));
     } catch (error) {
       console.log(error);
