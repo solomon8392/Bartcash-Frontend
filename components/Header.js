@@ -17,7 +17,7 @@ export default function Home({loggedinState}) {
     }
   });
 
-  const [sliceNum, setSliceNum] = useState("");
+  const [sliceNum, setSliceNum] = useState(0);
 
   useEffect(() => {
     getProfile();
