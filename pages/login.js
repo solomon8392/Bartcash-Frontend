@@ -26,7 +26,7 @@ export default function Home() {
 
         } catch (error) {
             console.log(error);
-            toast.error('An error occurred!', {
+            toast.error( error.response.data.message ||'An error occurred!', {
                 position: "top-center",
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -64,10 +64,11 @@ export default function Home() {
             <div className={`mb-2`}>Already have an account? <button className={`text-primary`} onClick={() => {router.push("/signup")}}>Sign Up</button></div>
             <div className={`mb-2`}>OR</div>
             <div className={`flex justify-center gap-x-10`}>
-                <button>
+                <button onClick={() => {router.push(process.env.NEXT_PUBLIC_BASEURL + "auth/login/google")}}>
                     <Image src={`/images/google-logo.jpg`} layout='intrinsic' className='rounded-full'  width={40} height={40} />
                 </button>
-                <button>
+
+                <button onClick={() => {router.push(process.env.NEXT_PUBLIC_BASEURL + "auth/facebook")}}>
                     <Image src={`/images/facebook-logo.png`} layout='intrinsic' className='rounded-full'  width={40} height={40} />
                 </button>
             </div>

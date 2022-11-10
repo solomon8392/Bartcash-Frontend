@@ -4,11 +4,13 @@ import { useState, useEffect } from 'react';
 import { useRouter } from "next/router";
 import Link from "next/link";
 import axios from "axios";
+import {AiOutlineShoppingCart} from "react-icons/ai"
 
 export default function Home({loggedinState}) {
 
   const router = useRouter();
   const [hide, setHide] = useState(true);
+  const [helpHide, setHelpHide] = useState(true);
   const [search, setSearch] = useState("");
   const [userProfile, setUserProfile] = useState({
     data: {
@@ -167,6 +169,227 @@ export default function Home({loggedinState}) {
         </button>
         <div className="flex justify-center">
   <div>
+    <HelpButton hide={helpHide} setHide={setHelpHide} />
+  </div>
+</div>
+        <button className={``} onClick={() => {router.push("/login")}}>Login</button>
+        <button className={`flex flex-nowrap items-center justify-center w-[80px] p-1 rounded-[20px] bg-primary text-white`} onClick={() => {router.push("/signup")}}>Sign Up</button>
+        </div>
+
+        <div className={`${loggedinState == true ? "flex" : "hidden"}  justify-end w-full gap-2 xl:gap-6`}>
+            <div className={`flex items-center gap-x-2 text-bold text-xl`}>
+              <button><AiOutlineShoppingCart className={`text-[35px]`} /></button>
+            {/* <HelpButton hide={helpHide} setHide={setHelpHide} /> */}
+              {/* <button className={`bg-primary text-white text-sm p-1 rounded`} onClick={logOut}>Log Out</button> */}
+          
+              <div className="dropdown relative">
+      <button
+        className="
+          dropdown-toggle
+          px-2
+          py-2.5
+          transition
+          duration-150
+          ease-in-out
+          flex
+          relative
+          items-center
+          whitespace-nowrap
+        "
+        type="button"
+        id="dropdownMenuButton1"
+        onClick={() => {setHide(!hide)}}
+      >
+        <Image src={process.env.NEXT_PUBLIC_BASEURL.slice(0, sliceNum) + userProfile.data.profilePicUrl.slice(6)} className={`rounded-full`} layout='fixed'  width={40} height={40} />
+        <svg
+          aria-hidden="true"
+          focusable="false"
+          data-prefix="fas"
+          data-icon="caret-down"
+          className="w-2 ml-2"
+          role="img"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 320 512"
+        >
+          <path
+            fill="currentColor"
+            d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"
+          ></path>
+        </svg>
+      </button>
+      <ul
+        className={`
+          dropdown-menu
+          absolute
+          min-w-max
+          block
+          bg-white
+          text-base
+          ${hide == true ? "hidden": "block"}
+          z-50
+          float-left
+          py-2
+          right-0
+          list-none
+          text-left
+          rounded-lg
+          shadow-lg
+          mt-1
+          m-0
+          bg-clip-padding
+          border-none
+        `}
+        aria-labelledby="dropdownMenuButton1"
+      >
+        <li>
+          <div
+            className="
+              dropdown-item
+              text-sm
+              py-2
+              px-4
+              gap-4
+              font-normal
+              block
+              w-full
+              flex
+              items-center
+              whitespace-nowrap
+              bg-transparent
+              text-gray-700
+              hover:bg-gray-100
+            "
+            href="#"
+            >
+              <Image src={process.env.NEXT_PUBLIC_BASEURL.slice(0, sliceNum) + userProfile.data.profilePicUrl.slice(6)} className={`rounded-full`} layout='fixed'  width={60} height={60} />
+              <div className={`flex flex-col gap-2`}>
+              <div className={`font-bold`}>{userProfile.data.fullName}</div>
+              <div className={`bg-primary text-white rounded-[20px] py-1 px-2`}>View profile</div>
+              </div>
+              </div>
+        </li>
+        <hr className={`w-[90%] mx-auto my-2 border-yellow`} />
+        <li>
+          <a
+            className="
+              dropdown-item
+              text-sm
+              py-2
+              px-4
+              font-normal
+              block
+              w-full
+              whitespace-nowrap
+              bg-transparent
+              text-gray-700
+              hover:bg-gray-100
+            "
+            href="#"
+            >Chats</a>
+        </li>
+        <li>
+          <a
+            className="
+              dropdown-item
+              text-sm
+              py-2
+              px-4
+              font-normal
+              block
+              w-full
+              whitespace-nowrap
+              bg-transparent
+              text-gray-700
+              hover:bg-gray-100
+            "
+            href="#"
+            >Offers</a>
+        </li>
+        <li>
+          <a
+            className="
+              dropdown-item
+              text-sm
+              py-2
+              px-4
+              font-normal
+              block
+              w-full
+              whitespace-nowrap
+              bg-transparent
+              text-gray-700
+              hover:bg-gray-100
+            "
+            href="#"
+            >Notifications</a>
+        </li>
+        <li>
+          <a
+            className="
+              dropdown-item
+              text-sm
+              py-2
+              px-4
+              font-normal
+              block
+              w-full
+              whitespace-nowrap
+              bg-transparent
+              text-gray-700
+              hover:bg-gray-100
+            "
+            href="#"
+            >Auction</a>
+        </li>
+        <li>
+          <a
+            className="
+              dropdown-item
+              text-sm
+              py-2
+              px-4
+              font-normal
+              block
+              w-full
+              whitespace-nowrap
+              bg-transparent
+              text-gray-700
+              hover:bg-gray-100
+            "
+            href="#"
+            >Settings</a>
+        </li>
+        <hr className={`w-[90%] mx-auto my-2 border-yellow`} />
+        <li>
+          <div
+            className="
+              dropdown-item
+              text-sm
+              py-2
+              px-4
+              font-normal
+              block
+              w-full
+              whitespace-nowrap
+              bg-transparent
+              text-gray-700
+              hover:bg-gray-100
+            "
+            onClick={logOut}
+            >Log Out</div>
+        </li>
+      </ul>
+    </div>
+
+          </div>
+        </div>
+        
+      </div>
+    );
+}
+
+function HelpButton({hide, setHide}) {
+  return (
     <div className="dropdown relative">
       <button
         className="
@@ -242,8 +465,7 @@ export default function Home({loggedinState}) {
               hover:bg-gray-100
             "
             href="#"
-            >Action</a
-          >
+            >Contact Us</a>
         </li>
         <li>
           <a
@@ -261,44 +483,9 @@ export default function Home({loggedinState}) {
               hover:bg-gray-100
             "
             href="#"
-            >Another action</a
-          >
-        </li>
-        <li>
-          <a
-            className="
-              dropdown-item
-              text-sm
-              py-2
-              px-4
-              font-normal
-              block
-              w-full
-              whitespace-nowrap
-              bg-transparent
-              text-gray-700
-              hover:bg-gray-100
-            "
-            href="#"
-            >Something else here</a
-          >
+            >FAQ&apos;s</a>
         </li>
       </ul>
     </div>
-  </div>
-</div>
-        <button className={``} onClick={() => {router.push("/login")}}>Login</button>
-        <button className={`flex flex-nowrap items-center justify-center w-[80px] p-1 rounded-[20px] bg-primary text-white`} onClick={() => {router.push("/signup")}}>Sign Up</button>
-        </div>
-
-        <div className={`${loggedinState == true ? "flex" : "hidden"}  justify-end w-full gap-2 xl:gap-6`}>
-            <div className={`flex items-center gap-x-2 text-bold text-xl`}>
-              <button className={`bg-primary text-white text-sm p-1 rounded`} onClick={logOut}>Log Out</button>
-          <Image src={process.env.NEXT_PUBLIC_BASEURL.slice(0, sliceNum) + userProfile.data.profilePicUrl.slice(6)} className={`rounded-full`} layout='fixed'  width={40} height={40} />
-              {userProfile.data.fullName} 
-          </div>
-        </div>
-        
-      </div>
-    );
+  );
 }
