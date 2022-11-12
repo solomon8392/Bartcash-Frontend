@@ -394,10 +394,10 @@ export default function Home() {
             <div>Products Image</div>
 
             <div className={`grid grid-cols-2 w-[440px] gap-6`}>
-              <div className={`border border-primary rounded-[40px] h-[200px]`}>1</div>
-              <div className={`border border-primary rounded-[40px] h-[200px]`}>1</div>
-              <div className={`border border-primary rounded-[40px] h-[200px]`}>1</div>
-              <div className={`border border-primary rounded-[40px] h-[200px]`}>1</div>
+              <div className={`border flex justify-center items-center border-dashed border-primary rounded-[20px] text-center h-[200px]`}>Add product image or select</div>
+              <div className={`border flex justify-center items-center border-dashed border-primary rounded-[20px] text-center h-[200px]`}>Add product image or select</div>
+              <div className={`border flex justify-center items-center border-dashed border-primary rounded-[20px] h-[200px]`}>1</div>
+              <div className={`border flex justify-center items-center border-dashed border-primary rounded-[20px] h-[200px]`}>1</div>
             </div>
 
             <button

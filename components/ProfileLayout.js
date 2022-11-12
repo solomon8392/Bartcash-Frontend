@@ -8,7 +8,7 @@ import NavStyle from "../styles/ProfileNav.module.css";
 export default function Home({children}) {
     return (
         <div className="grid grid-cols-[100px_1fr]">
-            <div className={`bg-primary text-white text-2xl ${NavStyle.parentSidebar} justify-between z-20 flex items-center flex-col p-6 h-[83vh] hover:overflow-y-auto overflow-x-hidden`}>
+            <div className={`bg-primary text-white text-2xl ${NavStyle.parentSidebar} justify-between py-4 z-20 flex items-center flex-col p-6 h-[83vh] hover:overflow-y-auto overflow-x-hidden`}>
                 <div className={`flex items-center flex-col`}>
                     <div className="hover:text-yellow hover:cursor-pointer"><BsChat /><span>Chat</span></div>
                     <div className="hover:text-yellow hover:cursor-pointer"><MdOutlineSwapHorizontalCircle /> <span>Offers</span></div>
@@ -17,11 +17,11 @@ export default function Home({children}) {
                     <div className="hover:text-yellow hover:cursor-pointer"><IoSettingsOutline /><span>Settings</span></div>
                 </div>
 
-                <div className={`flex w-full items-center flex-col hover:justify-start`}>
-                    <div className={`flex items-center gap-y-4 hover:gap-y-2 flex-col`}>
+                <div className={`flex w-full items-center flex-col`}>
+                    
                         <div className="hover:text-yellow hover:cursor-pointer"><CgProfile /><span>Profile</span></div>
                         <div className="hover:text-yellow hover:cursor-pointer"><MdLogout /><span>Log Out</span></div>
-                    </div>
+            
                 </div>
                 
             </div>
