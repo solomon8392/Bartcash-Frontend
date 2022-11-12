@@ -22,6 +22,17 @@ export default function Home() {
             if(response.status == 200) {
                 localStorage.setItem("authtoken", `${response.data.tokentype} ${response.data.token}`);
                 router.push("/");
+            } else {
+                toast.error('An error occurred!', {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                }); 
             }
 
         } catch (error) {
