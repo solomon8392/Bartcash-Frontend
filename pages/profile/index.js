@@ -209,8 +209,12 @@ export default function Home() {
             </div>
             </div>
 
-        <div>
-          <div>Name</div>
+        <div className={`flex flex-col`}>
+          <div className={`font-bold text-[20px]`}>Victor</div>
+          <div className={`flex gap-x-6`}>
+            <div>Following</div>
+            <div>Followers</div>
+          </div>
         </div>
 
       </div>

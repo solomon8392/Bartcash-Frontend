@@ -394,10 +394,31 @@ export default function Home() {
             <div>Products Image</div>
 
             <div className={`grid grid-cols-2 w-[440px] gap-6`}>
-              <div className={`border flex justify-center items-center border-dashed border-primary rounded-[20px] text-center h-[200px]`}>Add product image or select</div>
-              <div className={`border flex justify-center items-center border-dashed border-primary rounded-[20px] text-center h-[200px]`}>Add product image or select</div>
-              <div className={`border flex justify-center items-center border-dashed border-primary rounded-[20px] h-[200px]`}>1</div>
-              <div className={`border flex justify-center items-center border-dashed border-primary rounded-[20px] h-[200px]`}>1</div>
+              <div className={`border  flex justify-center items-center border-dashed border-primary rounded-[20px] text-center h-[200px]`}>
+              <div className={`w-full`}>
+            <input placeholder='Enter your full name' id="fileInput" onChange={(e) => {changePicture(e.target.files[0])}} type={`file`} className={`border hidden rounded-[10px] p-2 mb-4 w-full`} />
+            <label htmlFor="fileInput" className={`w-full flex justify-center cursor-pointer items-center block rounded-full text-primary`}>
+                {/* <FontAwesomeIcon icon={faCamera} className={`text-[10px] md:text-[12px]`} /> */}
+                {/* <AiFillCamera className={`position: absolute`} /> */}
+                Add product image or select
+            </label>
+            </div>
+              </div>
+
+              <div className={`border  flex justify-center items-center border-dashed border-primary rounded-[20px] text-center h-[200px]`}>
+              <div className={`w-full`}>
+            <input placeholder='Enter your full name' id="fileInput" onChange={(e) => {changePicture(e.target.files[0])}} type={`file`} className={`border hidden rounded-[10px] p-2 mb-4 w-full`} />
+            <label htmlFor="fileInput" className={`w-full flex justify-center cursor-pointer items-center block rounded-full text-primary`}>
+                {/* <FontAwesomeIcon icon={faCamera} className={`text-[10px] md:text-[12px]`} /> */}
+                {/* <AiFillCamera className={`position: absolute`} /> */}
+                Add product image or select
+            </label>
+            </div>
+              </div>
+
+              {/* <div className={`border flex justify-center items-center border-dashed border-primary rounded-[20px] text-center h-[200px]`}>Add product image or select</div> */}
+              {/* <div className={`border flex justify-center items-center border-dashed border-primary rounded-[20px] h-[200px]`}>1</div> */}
+              {/* <div className={`border flex justify-center items-center border-dashed border-primary rounded-[20px] h-[200px]`}>1</div> */}
             </div>
 
             <button

@@ -8,7 +8,7 @@ import NavStyle from "../styles/ProfileNav.module.css";
 export default function Home({children}) {
     return (
         <div className="grid grid-cols-[100px_1fr]">
-            <div className={`bg-primary text-white text-2xl ${NavStyle.parentSidebar} justify-between py-4 z-20 flex items-center flex-col p-6 h-[83vh] hover:overflow-y-auto overflow-x-hidden`}>
+            <div className={`bg-primary text-white text-2xl ${NavStyle.parentSidebar} justify-between py-4 z-20 flex items-center flex-col px-6 py-10 h-[83vh] hover:overflow-y-auto overflow-x-hidden`}>
                 <div className={`flex items-center flex-col`}>
                     <div className="hover:text-yellow hover:cursor-pointer"><BsChat /><span>Chat</span></div>
                     <div className="hover:text-yellow hover:cursor-pointer"><MdOutlineSwapHorizontalCircle /> <span>Offers</span></div>
