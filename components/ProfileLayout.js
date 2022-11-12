@@ -1,16 +1,35 @@
-import {BsChat} from "react-icons/bs"
+import {BsChat, BsShop} from "react-icons/bs"
+import {MdOutlineSwapHorizontalCircle} from "react-icons/md"
+import {IoNotificationsOutline, IoSettingsOutline} from "react-icons/io5"
+import {CgProfile} from "react-icons/cg";
+import {MdLogout} from "react-icons/md";
+import NavStyle from "../styles/ProfileNav.module.css";
 
 export default function Home({children}) {
     return (
-        <div className="grid grid-cols-[80px_1fr]">
-            <div className={`bg-primary text-white flex items-center flex-col gap-y-2 p-6 h-[100vh] overflow-y-auto`}>
-                <div><BsChat /></div>
-                <div>Icon</div>
+        <div className="grid grid-cols-[100px_1fr]">
+            <div className={`bg-primary text-white text-2xl ${NavStyle.parentSidebar} justify-between z-20 flex items-center flex-col p-6 h-[83vh] hover:overflow-y-auto overflow-x-hidden`}>
+                <div className={`flex items-center flex-col`}>
+                    <div className="hover:text-yellow hover:cursor-pointer"><BsChat /><span>Chat</span></div>
+                    <div className="hover:text-yellow hover:cursor-pointer"><MdOutlineSwapHorizontalCircle /> <span>Offers</span></div>
+                    <div className="hover:text-yellow hover:cursor-pointer"><IoNotificationsOutline /><span>Notifications</span></div>
+                    <div className="hover:text-yellow hover:cursor-pointer"><BsShop /><span>Aunctions</span></div>
+                    <div className="hover:text-yellow hover:cursor-pointer"><IoSettingsOutline /><span>Settings</span></div>
+                </div>
+
+                <div className={`flex w-full items-center flex-col hover:justify-start`}>
+                    <div className={`flex items-center gap-y-4 hover:gap-y-2 flex-col`}>
+                        <div className="hover:text-yellow hover:cursor-pointer"><CgProfile /><span>Profile</span></div>
+                        <div className="hover:text-yellow hover:cursor-pointer"><MdLogout /><span>Log Out</span></div>
+                    </div>
+                </div>
+                
             </div>
-            <div className="p-6 overflow-y-auto h-[82vh]">
+            <div className="p-6 wi overflow-y-auto h-[82vh]">
             {children}
             </div>
             
         </div>
     );
 }
+
