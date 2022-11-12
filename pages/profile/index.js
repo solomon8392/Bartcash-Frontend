@@ -6,6 +6,7 @@ import checkLoggedIn from "../../utilities/checkifloggedin";
 import NavigationComponent from "../../components/HeaderNavigation";
 import ProfileLayout from "../../components/ProfileLayout";
 import {AiFillCamera} from "react-icons/ai";
+import { useRouter } from "next/router";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faTag, faHeart, faArrowRightArrowLeft  } from '@fortawesome/free-solid-svg-icons';
 
@@ -13,6 +14,7 @@ export default function Home() {
   const [loginState, setLoginState] = useState(false);
   const [sliceNum, setSliceNum] = useState(0);
   const [profilePic, setProfilePic] = useState("/images/profilepic_avatar.png");
+  const router = useRouter();
 
   const [uploadedProducts, setUploadedProdicts] = useState(
     [
@@ -220,7 +222,7 @@ export default function Home() {
       </div>
 
       <div className={`w-full flex items-center justify-end mb-6`}>
-          <button className={`text-center bg-primary flex items-center justify-center font-bold rounded-[20px] py-2 px-4 text-white text-[14px]`}>Add Product +</button>
+          <button className={`text-center bg-primary flex items-center justify-center font-bold rounded-[20px] py-2 px-4 text-white text-[14px] cursor-pointer`} onClick={() => {router.push("/profile/addproduct")}}>Add Product +</button>
         </div>
 
       <div className={`grid grid-cols-12 gap-y-10 gap-x-14 xl:gap-x-8`}>

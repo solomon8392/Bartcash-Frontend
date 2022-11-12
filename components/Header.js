@@ -264,7 +264,7 @@ export default function Home({loggedinState}) {
               <Image src={process.env.NEXT_PUBLIC_BASEURL.slice(0, sliceNum) + userProfile.data.profilePicUrl.slice(6)} className={`rounded-full`} layout='fixed'  width={60} height={60} />
               <div className={`flex flex-col gap-2`}>
               <div className={`font-bold`}>{userProfile.data.fullName}</div>
-              <div className={`bg-primary text-white rounded-[20px] py-1 px-2`}>View profile</div>
+              <div className={`bg-primary text-white rounded-[20px] py-1 px-2 cursor-pointer`} onClick={() => {router.push("/profile")}}>View profile</div>
               </div>
               </div>
         </li>
