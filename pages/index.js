@@ -12,10 +12,15 @@ import FooterComponent from "../components/Footer";
 import AuctionComponent from "../components/Auction";
 import { useState, useEffect } from 'react';
 import checkLoggedIn from "../utilities/checkifloggedin";
+import axios from "axios";
 
 export default function Home() {
 
   const [loginState, setLoginState] = useState(false);
+  const [productsProps, setProducts] = useState({
+    productTitle: "Hot Deals",
+    products: []
+  });
 
   const checkLogIn = async () => {
     const l = await checkLoggedIn();
@@ -24,7 +29,27 @@ export default function Home() {
 
   useEffect(function() {
     checkLogIn();
+    getProducts();
   }, []);
+
+  const getProducts = async () => {
+    try {
+      const results = await axios.get("products/products", {
+        headers: {
+          accesstoken: localStorage.getItem("authtoken")
+        }
+      });
+
+      setProducts({
+        productTitle: "Hot Deals",
+        products: results.data
+      });
+      console.log(results.data);
+      console.log("Here");
+    } catch (error) {
+      console.log(error);
+    }
+  }
   
   const [carProps, setCarousel] = useState([
     {
@@ -45,442 +70,16 @@ export default function Home() {
     }
     ]);
 
-    const [productsProps, setProducts] = useState({
-      productTitle: "Hot Deals",
-      products: [
-        {
-          userPicture: "/images/profile-image3.jpeg",
-          userName: "Didi Peters",
-          userId: "001",
-          addedToFavourite: false,
-          productName: "HP Elitebook",
-          productPicture: "/images/hp-laptop.png",
-          productPrice: 50000,
-          productId: "01"
-        },
-        {
-          userPicture: "/images/img2.png",
-          userName: "Daniel E",
-          userId: "001",
-          addedToFavourite: false,
-          productName: "HP Elitebook",
-          productPicture: "/images/hp-laptop.png",
-          productPrice: 50000,
-          productId: "01"
-        },
-        {
-          userPicture: "/images/profile-image2.jpeg",
-          userName: "Victor P",
-          userId: "001",
-          addedToFavourite: false,
-          productName: "HP Elitebook",
-          productPicture: "/images/hp-laptop.png",
-          productPrice: 50000,
-          productId: "01"
-        },
-        {
-          userPicture: "/images/profile-image4.png",
-          userName: "Victor P",
-          userId: "001",
-          addedToFavourite: false,
-          productName: "HP Elitebook",
-          productPicture: "/images/hp-laptop.png",
-          productPrice: 50000,
-          productId: "01"
-        },
-        {
-          userPicture: "/images/profile-image3.jpeg",
-          userName: "Victor P",
-          userId: "001",
-          addedToFavourite: false,
-          productName: "HP Elitebook",
-          productPicture: "/images/hp-laptop.png",
-          productPrice: 50000,
-          productId: "01"
-        },
-        {
-          userPicture: "/images/img2.png",
-          userName: "Victor P",
-          userId: "001",
-          addedToFavourite: false,
-          productName: "HP Elitebook",
-          productPicture: "/images/hp-laptop.png",
-          productPrice: 50000,
-          productId: "01"
-        },
-        {
-          userPicture: "/images/profile-image2.jpeg",
-          userName: "Victor P",
-          userId: "001",
-          addedToFavourite: false,
-          productName: "HP Elitebook",
-          productPicture: "/images/hp-laptop.png",
-          productPrice: 50000,
-          productId: "01"
-        },
-        {
-          userPicture: "/images/profile-image4.png",
-          userName: "Victor P",
-          userId: "001",
-          addedToFavourite: true,
-          productName: "HP Elitebook",
-          productPicture: "/images/hp-laptop.png",
-          productPrice: 50000,
-          productId: "01"
-        },
-        {
-          userPicture: "/images/profile-image3.jpeg",
-          userName: "Victor P",
-          userId: "001",
-          addedToFavourite: false,
-          productName: "HP Elitebook",
-          productPicture: "/images/hp-laptop.png",
-          productPrice: 50000,
-          productId: "01"
-        },
-        {
-          userPicture: "/images/img2.png",
-          userName: "Victor P",
-          userId: "001",
-          addedToFavourite: false,
-          productName: "HP Elitebook",
-          productPicture: "/images/hp-laptop.png",
-          productPrice: 50000,
-          productId: "01"
-        },
-        {
-          userPicture: "/images/profile-image2.jpeg",
-          userName: "Victor P",
-          userId: "001",
-          addedToFavourite: true,
-          productName: "HP Elitebook",
-          productPicture: "/images/hp-laptop.png",
-          productPrice: 50000,
-          productId: "01"
-        },
-        {
-          userPicture: "/images/profile-image4.png",
-          userName: "Victor P",
-          userId: "001",
-          addedToFavourite: false,
-          productName: "HP Elitebook",
-          productPicture: "/images/hp-laptop.png",
-          productPrice: 50000,
-          productId: "01"
-        },
-        {
-          userPicture: "/images/profile-image3.jpeg",
-          userName: "Victor P",
-          userId: "001",
-          addedToFavourite: false,
-          productName: "HP Elitebook",
-          productPicture: "/images/hp-laptop.png",
-          productPrice: 50000,
-          productId: "01"
-        },
-        {
-          userPicture: "/images/img2.png",
-          userName: "Victor P",
-          userId: "001",
-          addedToFavourite: true,
-          productName: "HP Elitebook",
-          productPicture: "/images/hp-laptop.png",
-          productPrice: 50000,
-          productId: "01"
-        },
-        {
-          userPicture: "/images/profile-image2.jpeg",
-          userName: "Victor P",
-          userId: "001",
-          addedToFavourite: false,
-          productName: "HP Elitebook",
-          productPicture: "/images/hp-laptop.png",
-          productPrice: 50000,
-          productId: "01"
-        },
-        {
-          userPicture: "/images/profile-image4.png",
-          userName: "Victor P",
-          userId: "001",
-          addedToFavourite: false,
-          productName: "HP Elitebook",
-          productPicture: "/images/hp-laptop.png",
-          productPrice: 50000,
-          productId: "01"
-        },
-        {
-          userPicture: "/images/profile-image2.jpeg",
-          userName: "Victor P",
-          userId: "001",
-          addedToFavourite: false,
-          productName: "HP Elitebook",
-          productPicture: "/images/hp-laptop.png",
-          productPrice: 50000,
-          productId: "01"
-        },
-        {
-          userPicture: "/images/profile-image4.png",
-          userName: "Victor P",
-          userId: "001",
-          addedToFavourite: false,
-          productName: "HP Elitebook",
-          productPicture: "/images/hp-laptop.png",
-          productPrice: 50000,
-          productId: "01"
-        }
-      ]
-    });
+    
 
     const [popularProducts, setPopularProducts] = useState({
       productTitle: "Popular Products",
-      products: [
-        {
-          userPicture: "/images/profile-image3.jpeg",
-          userName: "Victor P",
-          userId: "001",
-          addedToFavourite: false,
-          productName: "HP Elitebook",
-          productPicture: "/images/hp-laptop.png",
-          productPrice: 50000,
-          productId: "01"
-        },
-        {
-          userPicture: "/images/img2.png",
-          userName: "Victor P",
-          userId: "001",
-          addedToFavourite: false,
-          productName: "HP Elitebook",
-          productPicture: "/images/hp-laptop.png",
-          productPrice: 50000,
-          productId: "01"
-        },
-        {
-          userPicture: "/images/profile-image2.jpeg",
-          userName: "Victor P",
-          userId: "001",
-          addedToFavourite: false,
-          productName: "HP Elitebook",
-          productPicture: "/images/hp-laptop.png",
-          productPrice: 50000,
-          productId: "01"
-        },
-        {
-          userPicture: "/images/profile-image4.png",
-          userName: "Victor P",
-          userId: "001",
-          addedToFavourite: false,
-          productName: "HP Elitebook",
-          productPicture: "/images/hp-laptop.png",
-          productPrice: 50000,
-          productId: "01"
-        },
-        {
-          userPicture: "/images/profile-image3.jpeg",
-          userName: "Victor P",
-          userId: "001",
-          addedToFavourite: false,
-          productName: "HP Elitebook",
-          productPicture: "/images/hp-laptop.png",
-          productPrice: 50000,
-          productId: "01"
-        },
-        {
-          userPicture: "/images/img2.png",
-          userName: "Victor P",
-          userId: "001",
-          addedToFavourite: false,
-          productName: "HP Elitebook",
-          productPicture: "/images/hp-laptop.png",
-          productPrice: 50000,
-          productId: "01"
-        },
-        {
-          userPicture: "/images/profile-image2.jpeg",
-          userName: "Victor P",
-          userId: "001",
-          addedToFavourite: false,
-          productName: "HP Elitebook",
-          productPicture: "/images/hp-laptop.png",
-          productPrice: 50000,
-          productId: "01"
-        },
-        {
-          userPicture: "/images/profile-image4.png",
-          userName: "Victor P",
-          userId: "001",
-          addedToFavourite: true,
-          productName: "HP Elitebook",
-          productPicture: "/images/hp-laptop.png",
-          productPrice: 50000,
-          productId: "01"
-        },
-        {
-          userPicture: "/images/profile-image3.jpeg",
-          userName: "Victor P",
-          userId: "001",
-          addedToFavourite: false,
-          productName: "HP Elitebook",
-          productPicture: "/images/hp-laptop.png",
-          productPrice: 50000,
-          productId: "01"
-        },
-        {
-          userPicture: "/images/img2.png",
-          userName: "Victor P",
-          userId: "001",
-          addedToFavourite: false,
-          productName: "HP Elitebook",
-          productPicture: "/images/hp-laptop.png",
-          productPrice: 50000,
-          productId: "01"
-        },
-        {
-          userPicture: "/images/profile-image2.jpeg",
-          userName: "Victor P",
-          userId: "001",
-          addedToFavourite: false,
-          productName: "HP Elitebook",
-          productPicture: "/images/hp-laptop.png",
-          productPrice: 50000,
-          productId: "01"
-        },
-        {
-          userPicture: "/images/profile-image4.png",
-          userName: "Victor P",
-          userId: "001",
-          addedToFavourite: true,
-          productName: "HP Elitebook",
-          productPicture: "/images/hp-laptop.png",
-          productPrice: 50000,
-          productId: "01"
-        }
-      ]
+      products: []
     });
 
     const [recommendedProducts, setRecommendedProducts] = useState({
       productTitle: "Recommended",
-      products: [
-        {
-          userPicture: "/images/profile-image3.jpeg",
-          userName: "Victor P",
-          userId: "001",
-          addedToFavourite: false,
-          productName: "HP Elitebook",
-          productPicture: "/images/hp-laptop.png",
-          productPrice: 50000,
-          productId: "01"
-        },
-        {
-          userPicture: "/images/img2.png",
-          userName: "Victor P",
-          userId: "001",
-          addedToFavourite: false,
-          productName: "HP Elitebook",
-          productPicture: "/images/hp-laptop.png",
-          productPrice: 50000,
-          productId: "01"
-        },
-        {
-          userPicture: "/images/profile-image2.jpeg",
-          userName: "Victor P",
-          userId: "001",
-          addedToFavourite: false,
-          productName: "HP Elitebook",
-          productPicture: "/images/hp-laptop.png",
-          productPrice: 50000,
-          productId: "01"
-        },
-        {
-          userPicture: "/images/profile-image4.png",
-          userName: "Victor P",
-          userId: "001",
-          addedToFavourite: false,
-          productName: "HP Elitebook",
-          productPicture: "/images/hp-laptop.png",
-          productPrice: 50000,
-          productId: "01"
-        },
-        {
-          userPicture: "/images/profile-image3.jpeg",
-          userName: "Victor P",
-          userId: "001",
-          addedToFavourite: false,
-          productName: "HP Elitebook",
-          productPicture: "/images/hp-laptop.png",
-          productPrice: 50000,
-          productId: "01"
-        },
-        {
-          userPicture: "/images/img2.png",
-          userName: "Victor P",
-          userId: "001",
-          addedToFavourite: false,
-          productName: "HP Elitebook",
-          productPicture: "/images/hp-laptop.png",
-          productPrice: 50000,
-          productId: "01"
-        },
-        {
-          userPicture: "/images/profile-image2.jpeg",
-          userName: "Victor P",
-          userId: "001",
-          addedToFavourite: false,
-          productName: "HP Elitebook",
-          productPicture: "/images/hp-laptop.png",
-          productPrice: 50000,
-          productId: "01"
-        },
-        {
-          userPicture: "/images/profile-image4.png",
-          userName: "Victor P",
-          userId: "001",
-          addedToFavourite: true,
-          productName: "HP Elitebook",
-          productPicture: "/images/hp-laptop.png",
-          productPrice: 50000,
-          productId: "01"
-        },
-        {
-          userPicture: "/images/profile-image3.jpeg",
-          userName: "Victor P",
-          userId: "001",
-          addedToFavourite: false,
-          productName: "HP Elitebook",
-          productPicture: "/images/hp-laptop.png",
-          productPrice: 50000,
-          productId: "01"
-        },
-        {
-          userPicture: "/images/img2.png",
-          userName: "Victor P",
-          userId: "001",
-          addedToFavourite: false,
-          productName: "HP Elitebook",
-          productPicture: "/images/hp-laptop.png",
-          productPrice: 50000,
-          productId: "01"
-        },
-        {
-          userPicture: "/images/profile-image2.jpeg",
-          userName: "Victor P",
-          userId: "001",
-          addedToFavourite: false,
-          productName: "HP Elitebook",
-          productPicture: "/images/hp-laptop.png",
-          productPrice: 50000,
-          productId: "01"
-        },
-        {
-          userPicture: "/images/profile-image4.png",
-          userName: "Victor P",
-          userId: "001",
-          addedToFavourite: true,
-          productName: "HP Elitebook",
-          productPicture: "/images/hp-laptop.png",
-          productPrice: 50000,
-          productId: "01"
-        }
-      ]
+      products: []
     });
 
     const [auction, setAunction] = useState({

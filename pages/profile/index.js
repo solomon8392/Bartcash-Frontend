@@ -16,6 +16,8 @@ export default function Home() {
   const [profilePic, setProfilePic] = useState("/images/profilepic_avatar.png");
   const router = useRouter();
 
+  const [userProducts, setUserProducts] = useState([]);
+
   const [uploadedProducts, setUploadedProdicts] = useState(
     [
       {
@@ -132,7 +134,25 @@ export default function Home() {
   useEffect(function () {
     checkLogIn();
     getProfile();
+    getProducts();
   }, []);
+
+  const getProducts = async () => {
+    try {
+      const results = await axios.get("products/products", {
+        headers: {
+          accesstoken: localStorage.getItem("authtoken")
+        }
+      });
+
+      setUserProducts(results.data);
+      console.log(results.data);
+      console.log(results.data[0].mainImage);
+      console.log("Here");
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   const getProfile = async () => {
 
@@ -225,16 +245,16 @@ export default function Home() {
           <button className={`text-center bg-primary flex items-center justify-center font-bold rounded-[20px] py-2 px-4 text-white text-[14px] cursor-pointer`} onClick={() => {router.push("/profile/addproduct")}}>Add Product +</button>
         </div>
 
-      <div className={`grid grid-cols-12 gap-y-10 gap-x-14 xl:gap-x-8`}>
+      <div className={`grid grid-cols-12 w-full gap-y-6 md:gap-y-10 overflow-x-hidden md:overflow-x-auto gap-x-4 md:gap-x-14 xl:gap-x-8 pb-4`}>
 
-      {uploadedProducts.length == 0 ? (
+      {userProducts.length == 0 ? (
         <div className={`mx-auto text-[60px] col-span-2 md:col-span-12`}>
         No Product
     </div>
       ) : (
-        uploadedProducts.map((product, index) => {
+        userProducts.map((product, index) => {
           return (
-            <div key={index} className={`col-span-2 md:col-span-4 xl:col-span-2 border border-[1px] border-solid p-2 border-yellow rounded-[20px]`}>
+            <div key={index} className={`col-span-6 md:col-span-4 xl:col-span-2 border border-[1px] border-solid p-2 border-yellow rounded-[20px]`}>
               {/* <div className={`flex items-center justify-between rounded-[20px]`}>
                 <Image src={product.userPicture} layout='intrinsic' className={`rounded-full`} width={35} height={35} />
                 <div className={`text-[20px] font-medium`}>{product.userName}</div>
@@ -250,9 +270,10 @@ export default function Home() {
               </div> */}
   
               <div className={`w-full text-center my-4`}>
-              <Image src={product.productPicture} layout={`intrinsic`} height={80} width={100} />
-              <div className={`text-[#262626] text-[16px] font-medium`}>{product.productName}</div>
-              <div className={`flex justify-center font-semibold text-[14px] items-center`}>N{product.productPrice} <FontAwesomeIcon icon={faTag} className={`w-4 h-6 text-primary ml-2`} /></div>
+                {console.log(process.env.NEXT_PUBLIC_BASEURL.slice(0, -3) + product.mainImage)}
+              <Image src={process.env.NEXT_PUBLIC_BASEURL.slice(0, -3) + product.mainImage} layout={`intrinsic`} height={80} width={100} />
+              <div className={`text-[#262626] text-[16px] font-medium`}>{product.name}</div>
+              <div className={`flex justify-center font-semibold text-[14px] items-center`}>N{product.price} <FontAwesomeIcon icon={faTag} className={`w-4 h-6 text-primary ml-2`} /></div>
               </div>
   
               {/* <button className={`text-center w-full bg-primary flex items-center justify-center font-bold rounded-[20px] py-2 text-white text-[14px]`}>Swap <AiOutlineSwap className={`text-white text-[20px] ml-2`} /></button> */}

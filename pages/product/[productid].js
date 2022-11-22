@@ -29,18 +29,50 @@ import { faMessage } from "@fortawesome/free-regular-svg-icons";
 import { useEffect, useState } from "react";
 import MoreLikeThis from "../../components/MoreLikeThis"
 import checkLoggedIn from "../../utilities/checkifloggedin";
+import { useRouter } from "next/router";
+import axios from "axios";
 
 export default function Home() {
-
+  
   const [loginState, setLoginState] = useState(false);
+  const [currentImage, setCurrentImage] = useState("/images/laptop-pic1.jpeg");
+  const [details, setDetails] = useState({
+    userid: {
+      fullName: "loading",
+      profilePicUrl: "public/images/profile-image3.jpeg"
+    }
+  });
+
+  const router = useRouter();
 
   useEffect(function() {
     checkLogIn();
+    fetchDetails();
   }, []);
 
   const checkLogIn = async () => {
     const l = await checkLoggedIn();
     setLoginState(l);
+  }
+
+
+  const fetchDetails = async () => {
+    console.log(router.query.productid);
+
+    try {
+      const response = await axios.get("products/product/" + router.query.productid, {
+        headers: {
+          accesstoken: localStorage.getItem("authtoken"),
+        }
+      });
+      console.log(response);
+      if(response.status == 200) {
+        setDetails(response.data);
+        setCurrentImage(process.env.NEXT_PUBLIC_BASEURL.slice(0, -3) + response.data.mainImage);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   const [moreProducts, setMoreProducts] = useState({
@@ -109,7 +141,6 @@ export default function Home() {
     ]
   });
 
-  const [currentImage, setCurrentImage] = useState("/images/laptop-pic1.jpeg");
 
   const [descriptions, setDescriptions] = useState([
     { name: "Name", value: "HP Spectre X360 13AW2038NA" },
@@ -149,14 +180,14 @@ export default function Home() {
           <div className="flex items-center gap-x-2">
             <div className={`h-10 w-10`}>
               <Image
-                src={`/images/img3.png`}
+                src={process.env.NEXT_PUBLIC_BASEURL.slice(0, -3) + details.userid.profilePicUrl.slice(7)}
                 layout="responsive"
                 className={`rounded-full`}
                 width={50}
                 height={50}
               />
             </div>
-            <div>Jerry Martins</div>
+            <div>{details.userid.fullName}</div>
             <div
               className={`flex items-center text-white bg-[#006FD6] justify-center w-4 h-4 rounded-full`}
             >
@@ -210,7 +241,7 @@ export default function Home() {
                             <FontAwesomeIcon icon={faCaretLeft} className={`text-xl`} />
                             </button> */}
 
-              <div
+              {/* <div
                 className={`flex gap-4 md:w-[320px] xl:w-[450px] overflow-x-auto`}
               >
                 <button
@@ -266,7 +297,7 @@ export default function Home() {
                     <div className={`w-10 h-2 bg-yellow`}></div>
                   ) : ""}
                 </button>
-              </div>
+              </div> */}
 
               {/* <button className={`border flex justify-center items-center w-14 h-20`}>
                             <FontAwesomeIcon icon={faCaretRight} className={`text-xl`} />
@@ -275,23 +306,22 @@ export default function Home() {
           </div>
           <div className={`flex flex-col md:gap-y-2 xl:gap-y-4 w-1/2`}>
             <div className={`md:text-2xl xl:text-3xl font-semibold mb-2`}>
-              HP Spectre X360 13AW2038NA, 13.3 WINS 10, Intel Core I51145G7 8GB
-              RAM 256GB SSD(402Z2EA){" "}
+              {details.name}
               <FontAwesomeIcon
                 icon={faShield}
                 className={`text-md text-[#006FD6]`}
               />
             </div>
             <div className={`md:text-md xl:text-xl`}>
-              Product age: 2 months old
+              Product age: {details.age}
             </div>
-            <div className={`md:text-md xl:text-xl`}>Price: N95,500</div>
-            <div className={`md:text-md xl:text-xl`}>
+            <div className={`md:text-md xl:text-xl`}>Price: N{details.price}</div>
+            {/* <div className={`md:text-md xl:text-xl`}>
               Real estimated price:{" "}
               <span className={` text-red-600 line-through`}>N150,000</span>
-            </div>
+            </div> */}
             <div className={`md:text-md xl:text-xl`}>
-              Condition: Working perfectly well
+              Condition: {details.condition}
             </div>
             <div className={`flex mt-6 md:gap-x-6 xl:gap-x-14`}>
               <button
@@ -352,11 +382,10 @@ export default function Home() {
       <div className={`mx-6 my-10`}>
         <div className={`font-semibold text-2xl`}>Description</div>
         <div className={`my-4`}>
-          HP Spectre X360 13AW2038NA, 13.3 WINS 10 is a very spectacular brand,
-          quick, fast and reliable
+          {details.description}
         </div>
 
-        <div className="flex flex-col">
+        {/* <div className="flex flex-col">
           <div className="overflow-x-auto">
             <div className="py-2 inline-block min-w-full">
               <div className="overflow-hidden">
@@ -379,7 +408,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
 
       <div className={`mx-6 my-8`}>

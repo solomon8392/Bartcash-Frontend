@@ -7,8 +7,15 @@ import NavigationComponent from "../../components/HeaderNavigation";
 import ProfileLayout from "../../components/ProfileLayout";
 import Status from "../../styles/Status.module.css";
 import { AiFillCamera } from "react-icons/ai";
-import { BsEmojiExpressionless, BsEmojiSmile, BsEmojiNeutral, BsEmojiLaughing, BsEmojiSunglasses } from "react-icons/bs";
-import {GrEmoji} from "react-icons/gr";
+import { ToastContainer, toast } from "react-toastify";
+import {
+  BsEmojiExpressionless,
+  BsEmojiSmile,
+  BsEmojiNeutral,
+  BsEmojiLaughing,
+  BsEmojiSunglasses,
+} from "react-icons/bs";
+import { GrEmoji } from "react-icons/gr";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBars,
@@ -23,112 +30,16 @@ export default function Home() {
   const [profilePic, setProfilePic] = useState("/images/profilepic_avatar.png");
   const [progressStatus, setProgressStatus] = useState(0);
 
-  const [uploadedProducts, setUploadedProdicts] = useState([
-    {
-      userPicture: "/images/img2.png",
-      userName: "Victor P",
-      userId: "001",
-      addedToFavourite: false,
-      live: true,
-      productName: "HP Elitebook",
-      productPicture: "/images/sneakers.jpg",
-      productDescription:
-        "This is my 2 months old sneakers which i would love to swap with something nice, the highest bidder takes it.",
-      productPrice: 50000,
-      productId: "01",
-    },
-    {
-      userPicture: "/images/profile-image2.jpeg",
-      userName: "Didi Peters",
-      userId: "001",
-      live: true,
-      addedToFavourite: true,
-      productName: "HP Elitebook",
-      productPicture: "/images/laptop-pic2.jpeg",
-      productDescription:
-        "This is my 4 months old MacBook which i would love to swap with something nice, the highest bidder takes it.",
-      productPrice: 50000,
-      productId: "01",
-    },
-    {
-      userPicture: "/images/profile-image3.jpeg",
-      userName: "Jerry Martins",
-      userId: "001",
-      live: false,
-      addedToFavourite: false,
-      productName: "HP Elitebook",
-      productPicture: "/images/laptop-img4.jpg",
-      productDescription:
-        "This is my 3 months old laptop which i would love to swap with something nice, the highest bidder takes it.",
-      productPrice: 50000,
-      productId: "01",
-    },
-    {
-      userPicture: "/images/img2.png",
-      userName: "Victor P",
-      userId: "001",
-      addedToFavourite: false,
-      productName: "HP Elitebook",
-      live: false,
-      productPicture: "/images/sneakers.jpg",
-      productDescription:
-        "This is my 2 months old sneakers which i would love to swap with something nice, the highest bidder takes it.",
-      productPrice: 50000,
-      productId: "01",
-    },
-    {
-      userPicture: "/images/profile-image4.png",
-      userName: "Victor P",
-      userId: "001",
-      addedToFavourite: false,
-      productName: "HP Elitebook",
-      live: false,
-      productPicture: "/images/laptop-img4.jpg",
-      productDescription:
-        "This is my 2 months old latop which i would love to swap with something nice, the highest bidder takes it.",
-      productPrice: 50000,
-      productId: "01",
-    },
-    {
-      userPicture: "/images/profile-image2.jpeg",
-      userName: "Victor P",
-      userId: "001",
-      addedToFavourite: false,
-      productName: "HP Elitebook",
-      live: false,
-      productPicture: "/images/laptop-pic2.jpeg",
-      productDescription:
-        "This is my 2 months old laptop which i would love to swap with something nice, the highest bidder takes it.",
-      productPrice: 50000,
-      productId: "01",
-    },
-    {
-      userPicture: "/images/profile-image4.png",
-      userName: "Victor P",
-      userId: "001",
-      addedToFavourite: false,
-      productName: "HP Elitebook",
-      live: false,
-      productPicture: "/images/laptop-img3.jpg",
-      productDescription:
-        "This is my 2 months old laptop which i would love to swap with something nice, the highest bidder takes it.",
-      productPrice: 50000,
-      productId: "01",
-    },
-    {
-      userPicture: "/images/profile-image2.jpeg",
-      userName: "Victor P",
-      userId: "001",
-      addedToFavourite: false,
-      productName: "HP Elitebook",
-      live: false,
-      productPicture: "/images/laptop-pic1.jpeg",
-      productDescription:
-        "This is my 2 months old laptop which i would love to swap with something nice, the highest bidder takes it.",
-      productPrice: 50000,
-      productId: "01",
-    },
-  ]);
+  const [productName, setProductName] = useState("");
+  const [productCategory, setProductCategory] = useState("");
+  const [productAge, setProductAge] = useState("");
+  const [productPrice, setProductPrice] = useState("");
+  const [productDescription, setProductDescription] = useState("");
+  const [productCondition, setProductCondition] = useState("");
+  const [productDefects, setProductDefects] = useState("");
+  const [productDeliveryType, setProductDeliveryType] = useState("");
+  const [productMainImage, setProductMainImage] = useState("");
+  // const [productExtraImages, setProductExtraImages] = useState("");
 
   const checkLogIn = async () => {
     const l = await checkLoggedIn();
@@ -206,8 +117,55 @@ export default function Home() {
     }
   };
 
+  const submitForm = async () => {
+    // console.log(
+    //   productName,
+    //   productCategory,
+    //   productAge,
+    //   productPrice,
+    //   productDescription,
+    //   productCondition,
+    //   productDefects,
+    //   productDeliveryType,
+    //   productMainImage,
+    //   productExtraImages
+    // );
+
+    console.log(productMainImage);
+
+    const formdata = new FormData();
+    formdata.append("productName", productName);
+    formdata.append("productCategory", productCategory);
+    formdata.append("productAge", productAge);
+    formdata.append("productPrice", productPrice);
+    formdata.append("productDescription", productDescription);
+    formdata.append("productCondition", productCondition);
+    formdata.append("productDefects", productDefects);
+    formdata.append("productDeliveryType", productDeliveryType);
+    formdata.append("productMainImage", productMainImage);
+    // formdata.append("productExtraImages", productExtraImages);
+
+
+    const res = await axios.post("products/product", formdata, {
+      headers: {
+        accesstoken: localStorage.getItem("authtoken")
+      }
+    });
+
+    console.log(res);
+    if(res.status == 200) {
+
+    toast.success("Upload Successful");
+
+      console.log("Successful", {
+        position: toast.POSITION.TOP_LEFT,
+      });
+    }
+  };
+
   return (
     <div className="overflow-hidden h-[100vh]">
+      <ToastContainer />
       <HeaderComponent loggedinState={loginState} />
 
       <hr />
@@ -225,23 +183,40 @@ export default function Home() {
           </button>
         </div>
 
-        <div className={`grid grid-cols-2 mb-10`}>
+        <div
+          className={`grid grid-cols-1 overflow-x-hidden md:grid-cols-2 gap-y-6 mb-10`}
+        >
           <div className="flex flex-col gap-y-4">
             <div>
               <div>Product Name</div>
               <input
                 type={`text`}
-                className={`border w-[80%] py-1 px-4 rounded-lg`}
+                className={`border w-full md:w-[80%] py-1 px-4 rounded-lg`}
                 placeholder="Add product name"
+                onChange={(e) => {
+                  setProductName(e.target.value);
+                }}
               />
             </div>
 
             <div>
-              <div>Product Name</div>
-              <select className={`border w-[80%] py-1 px-4 rounded-lg`}>
+              <div>Product Category</div>
+              <select
+                className={`border w-full md:w-[80%] py-1 px-4 rounded-lg`}
+                onChange={(e) => {
+                  setProductCategory(e.target.value);
+                }}
+              >
                 <option>Choose Category</option>
-                <option>Phones</option>
-                <option>Laptops</option>
+                <option value={`phones_and_accessories`}>
+                  Phones and accessories
+                </option>
+                <option value={`computer_and_accessories`}>
+                  Computer and accessories
+                </option>
+                <option value={`luggage_and_bags`}>Luggages and bags</option>
+                <option value={`furnitures`}>Furnitures</option>
+                <option value={`books`}>Books</option>
               </select>
             </div>
 
@@ -249,8 +224,11 @@ export default function Home() {
               <div>Product age</div>
               <input
                 type={`text`}
-                className={`border w-[80%] py-1 px-4 rounded-lg`}
+                className={`border w-full md:w-[80%] py-1 px-4 rounded-lg`}
                 placeholder="Add product age"
+                onChange={(e) => {
+                  setProductAge(e.target.value);
+                }}
               />
             </div>
 
@@ -258,116 +236,137 @@ export default function Home() {
               <div>Price</div>
               <input
                 type={`text`}
-                className={`border w-[80%] py-1 px-4 rounded-lg`}
+                className={`border w-full md:w-[80%] py-1 px-4 rounded-lg`}
                 placeholder="Add price"
+                onChange={(e) => {
+                  setProductPrice(e.target.value);
+                }}
               />
             </div>
 
             <div>
               <div>Product description</div>
               <textarea
-                className={`border w-[80%] py-1 px-4 rounded-lg`}
+                className={`border w-full md:w-[80%] py-1 px-4 rounded-lg`}
+                rows="5"
                 placeholder="Add description"
+                onChange={(e) => {
+                  setProductDescription(e.target.value);
+                }}
               />
             </div>
 
             <div>
               <div>Condition</div>
-              
-              <div className={`bg-grey dark:bg-[#12192B] w-[80%] py-2`}>
-              <div className={`${Status.stepper_wrapper}`}>
-                <div
-                onClick={()=> {setProgressStatus(1)}}
-                
-                  className={`${Status.stepper_item}
-  ${progressStatus == 1 ? `font-bold` : ""} cursor-pointer
-  `}
-                >
+
+              <div
+                className={`bg-grey dark:bg-[#12192B] w-full md:w-[80%] py-2`}
+              >
+                <div className={`${Status.stepper_wrapper}`}>
                   <div
-                    className={`${
-                      Status.step_counter
-                    } text-white border-[2px] border-solid border-grey dark:border-secondary hover:bg-[#3EC9ED]
-    ${progressStatus == 1 ? `bg-[#3EC9ED]` : "bg-[#D9D9D9]"}`}
+                    onClick={() => {
+                      setProductCondition("bad");
+                    }}
+                    className={`${Status.stepper_item}
+  ${productCondition == "bad" ? `font-bold` : ""} cursor-pointer
+  `}
                   >
-                    <BsEmojiExpressionless className={`text-3xl`} />
+                    <div
+                      className={`${
+                        Status.step_counter
+                      } text-white border-[2px] border-solid border-grey dark:border-secondary hover:bg-[#3EC9ED]
+    ${productCondition == "bad" ? `bg-[#3EC9ED]` : "bg-[#D9D9D9]"}`}
+                    >
+                      <BsEmojiExpressionless className={`text-3xl`} />
+                    </div>
+                    <div className={`${Status.step_name}`}>Bad</div>
                   </div>
-                  <div className={`${Status.step_name}`}>Bad</div>
-                </div>
-                <div
-                onClick={()=> {setProgressStatus(2)}}
-                  className={`${Status.stepper_item}
-  ${progressStatus == 2 ? `font-bold` : ""} cursor-pointer
+                  <div
+                    onClick={() => {
+                      setProductCondition("fairly_good");
+                    }}
+                    className={`${Status.stepper_item}
+  ${productCondition == "fairly_good" ? `font-bold` : ""} cursor-pointer
   
   `}
-                >
-                  <div
-                    className={`${
-                      Status.step_counter
-                    } text-white border-[2px] border-solid border-grey dark:border-secondary hover:bg-[#3EC9ED]
-    ${progressStatus == 2 ? `bg-[#3EC9ED]` : "bg-[#D9D9D9]"}`}
                   >
-                    <BsEmojiNeutral className={`text-3xl`} />
+                    <div
+                      className={`${
+                        Status.step_counter
+                      } text-white border-[2px] border-solid border-grey dark:border-secondary hover:bg-[#3EC9ED]
+    ${productCondition == "fairly_good" ? `bg-[#3EC9ED]` : "bg-[#D9D9D9]"}`}
+                    >
+                      <BsEmojiNeutral className={`text-3xl`} />
+                    </div>
+                    <div className={`${Status.step_name}`}>Fairly Good</div>
                   </div>
-                  <div className={`${Status.step_name}`}>Fairly Good</div>
-                </div>
-                <div
-                onClick={()=> {setProgressStatus(3)}}
-                  className={`${Status.stepper_item} cursor-pointer ${
-                    progressStatus == 3 ? `font-bold` : ""
-                  }`}
-                >
                   <div
-                    className={`${
-                      Status.step_counter
-                    } text-white border-[2px] border-solid border-grey dark:border-secondary hover:bg-[#3EC9ED]
-                    ${progressStatus == 3 ? `bg-[#3EC9ED]` : "bg-[#D9D9D9]"}`}
+                    onClick={() => {
+                      setProductCondition("good");
+                    }}
+                    className={`${Status.stepper_item} cursor-pointer ${
+                      productCondition == "good" ? `font-bold` : ""
+                    }`}
                   >
-                    <BsEmojiSmile className={`text-3xl`} />
+                    <div
+                      className={`${
+                        Status.step_counter
+                      } text-white border-[2px] border-solid border-grey dark:border-secondary hover:bg-[#3EC9ED]
+                    ${productCondition == "good" ? `bg-[#3EC9ED]` : "bg-[#D9D9D9]"}`}
+                    >
+                      <BsEmojiSmile className={`text-3xl`} />
+                    </div>
+                    <div className={`${Status.step_name}`}>Good</div>
                   </div>
-                  <div className={`${Status.step_name}`}>Good</div>
-                </div>
-                <div
-                onClick={()=> {setProgressStatus(4)}}
-                  className={`${Status.stepper_item} cursor-pointer ${
-                    progressStatus == 4 ? `font-bold` : ""
-                  }`}
-                >
                   <div
-                    className={`${
-                      Status.step_counter
-                    } text-white border-[2px] border-solid border-grey dark:border-secondary hover:bg-[#3EC9ED]
-                    ${progressStatus == 4 ? `bg-[#3EC9ED]` : "bg-[#D9D9D9]"}`}
+                    onClick={() => {
+                      setProductCondition("very_good");
+                    }}
+                    className={`${Status.stepper_item} cursor-pointer ${
+                      productCondition == "very_good" ? `font-bold` : ""
+                    }`}
                   >
-                    <BsEmojiLaughing className={`text-3xl`} />
+                    <div
+                      className={`${
+                        Status.step_counter
+                      } text-white border-[2px] border-solid border-grey dark:border-secondary hover:bg-[#3EC9ED]
+                    ${productCondition == "very_good" ? `bg-[#3EC9ED]` : "bg-[#D9D9D9]"}`}
+                    >
+                      <BsEmojiLaughing className={`text-3xl`} />
+                    </div>
+                    <div className={`${Status.step_name}`}>Very Good</div>
                   </div>
-                  <div className={`${Status.step_name}`}>Very Good</div>
-                </div>
-                <div
-                onClick={()=> {setProgressStatus(5)}}
-                  className={`${Status.stepper_item} ${
-                    progressStatus == 5 ? `font-bold` : ""
-                  } cursor-pointer`}
-                >
                   <div
-                    className={`${
-                      Status.step_counter
-                    } text-white border-[2px] border-solid border-grey dark:border-secondary hover:bg-[#3EC9ED]
-                    ${progressStatus == 5 ? `bg-[#3EC9ED]` : "bg-[#D9D9D9]"}`}
+                    onClick={() => {
+                      setProductCondition("excellent");
+                    }}
+                    className={`${Status.stepper_item} ${
+                      productCondition == "excellent" ? `font-bold` : ""
+                    } cursor-pointer`}
                   >
-                    <BsEmojiSunglasses className={`text-3xl`} />
+                    <div
+                      className={`${
+                        Status.step_counter
+                      } text-white border-[2px] border-solid border-grey dark:border-secondary hover:bg-[#3EC9ED]
+                    ${productCondition == "excellent" ? `bg-[#3EC9ED]` : "bg-[#D9D9D9]"}`}
+                    >
+                      <BsEmojiSunglasses className={`text-3xl`} />
+                    </div>
+                    <div className={`${Status.step_name}`}>Excellent</div>
                   </div>
-                  <div className={`${Status.step_name}`}>Excellent</div>
                 </div>
               </div>
-            </div>
-
             </div>
 
             <div>
               <div>Product defects</div>
               <textarea
-                className={`border w-[80%] py-1 px-4 rounded-lg`}
+                className={`border w-full md:w-[80%] py-1 px-4 rounded-lg`}
                 placeholder="Write the problem the product has, if any"
+                rows="5"
+                onChange={(e) => {
+                  setProductDefects(e.target.value);
+                }}
               />
               {/* <input type={`text`} className={`border w-[80%] py-1 px-4 rounded-lg`} placeholder="Add price" /> */}
             </div>
@@ -376,45 +375,83 @@ export default function Home() {
               <div>Delivery type</div>
               <div className="flex gap-x-10">
                 <div className="flex gap-x-2">
-                <input type={`checkbox`} />
-                    <div>Shipping</div> 
+                  <input
+                    name="deliverytype"
+                    type={`radio`}
+                    value="shipping"
+                    onChange={(e) => {
+                      setProductDeliveryType(e.target.value);
+                    }}
+                  />
+                  <div>Shipping</div>
                 </div>
 
                 <div className="flex gap-x-2">
-                <input type={`checkbox`} />
-                    <div>Pick up</div> 
+                  <input
+                    name="deliverytype"
+                    type={`radio`}
+                    value="pickup"
+                    onChange={(e) => {
+                      setProductDeliveryType(e.target.value);
+                    }}
+                  />
+                  <div>Pick up</div>
                 </div>
               </div>
               {/* <input type={`text`} className={`border w-[80%] py-1 px-4 rounded-lg`} placeholder="Add price" /> */}
             </div>
-
           </div>
 
           <div>
             <div>Products Image</div>
 
-            <div className={`grid grid-cols-2 w-[440px] gap-6`}>
-              <div className={`border  flex justify-center items-center border-dashed border-primary rounded-[20px] text-center h-[200px]`}>
-              <div className={`w-full`}>
-            <input placeholder='Enter your full name' id="fileInput" onChange={(e) => {changePicture(e.target.files[0])}} type={`file`} className={`border hidden rounded-[10px] p-2 mb-4 w-full`} />
-            <label htmlFor="fileInput" className={`w-full flex justify-center cursor-pointer items-center block rounded-full text-primary`}>
-                {/* <FontAwesomeIcon icon={faCamera} className={`text-[10px] md:text-[12px]`} /> */}
-                {/* <AiFillCamera className={`position: absolute`} /> */}
-                Add product image or select
-            </label>
-            </div>
+            <div className={`grid grid-cols-1 md:grid-cols-2 w-full md:w-[440px] gap-6`}>
+              <div
+                className={`border  flex justify-center items-center border-dashed border-primary rounded-[20px] text-center h-[200px]`}
+              >
+                <div className={`w-full`}>
+                  <input
+                    placeholder="Enter your full name"
+                    id="fileInput"
+                    onChange={(e) => {
+                      setProductMainImage(e.target.files[0]);
+                    }}
+                    type={`file`}
+                    className={`border hidden rounded-[10px] p-2 mb-4 w-full`}
+                    accept="image/*"
+                  />
+                  <label
+                    htmlFor="fileInput"
+                    className={`w-full flex justify-center cursor-pointer items-center block rounded-full text-primary`}
+                  >
+                    Add primary produce image
+                  </label>
+                </div>
               </div>
 
-              <div className={`border  flex justify-center items-center border-dashed border-primary rounded-[20px] text-center h-[200px]`}>
-              <div className={`w-full`}>
-            <input placeholder='Enter your full name' id="fileInput" onChange={(e) => {changePicture(e.target.files[0])}} type={`file`} className={`border hidden rounded-[10px] p-2 mb-4 w-full`} />
-            <label htmlFor="fileInput" className={`w-full flex justify-center cursor-pointer items-center block rounded-full text-primary`}>
-                {/* <FontAwesomeIcon icon={faCamera} className={`text-[10px] md:text-[12px]`} /> */}
-                {/* <AiFillCamera className={`position: absolute`} /> */}
-                Add product image or select
-            </label>
-            </div>
-              </div>
+              {/* <div
+                className={`border  flex justify-center items-center border-dashed border-primary rounded-[20px] text-center h-[200px]`}
+              >
+                <div className={`w-full`}>
+                  <input
+                    id="fileInputExtra"
+                    onChange={(e) => {
+                      setProductExtraImages(e.target.files);
+                    }}
+                    type={`file`}
+                    accept="image/*"
+                    multiple
+                    className={`border hidden rounded-[10px] p-2 mb-4 w-full`}
+                  />
+                  <label
+                    htmlFor="fileInputExtra"
+                    className={`w-full flex justify-center cursor-pointer items-center block rounded-full text-primary`}
+                  >
+                    
+                    Add extra product image (MAX 10)
+                  </label>
+                </div>
+              </div> */}
 
               {/* <div className={`border flex justify-center items-center border-dashed border-primary rounded-[20px] text-center h-[200px]`}>Add product image or select</div> */}
               {/* <div className={`border flex justify-center items-center border-dashed border-primary rounded-[20px] h-[200px]`}>1</div> */}
@@ -422,11 +459,11 @@ export default function Home() {
             </div>
 
             <button
-            className={`text-center bg-primary  mt-10 flex items-center justify-center rounded-[10px] py-2 px-4 text-white text-[14px]`}
-          >
-            Done
-          </button>
-
+              className={`text-center bg-primary mt-10 flex items-center justify-center rounded-[10px] py-2 px-4 text-white text-[14px]`}
+              onClick={submitForm}
+            >
+              Done
+            </button>
           </div>
         </div>
       </ProfileLayout>

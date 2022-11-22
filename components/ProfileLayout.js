@@ -25,7 +25,7 @@ export default function Home({children}) {
                 </div>
                 
             </div>
-            <div className="p-6 wi overflow-y-auto h-[82vh]">
+            <div className="p-4 md:p-6 wi overflow-y-auto h-[82vh]">
             {children}
             </div>
             

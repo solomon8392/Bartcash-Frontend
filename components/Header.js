@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { useRouter } from "next/router";
 import Link from "next/link";
 import axios from "axios";
-import {AiOutlineShoppingCart} from "react-icons/ai"
+import {AiOutlineShoppingCart} from "react-icons/ai";
 
 export default function Home({loggedinState}) {
 
