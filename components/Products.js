@@ -18,7 +18,7 @@ export default function Home({ productsProps }) {
         <div className={`w-full px-6 pb-6 pt-10`}>
         <div className={`bg-yellow text-primary text-center py-4 mb-2 font-bold font-[40px]`}>{productsProps.productTitle}</div>
         <div className={`grid grid-cols-2 md:grid-cols-12 gap-y-6 gap-x-4 md:gap-y-10 md:gap-x-14 xl:gap-x-8 w-full my-10`}>
-        {console.log(productsProps)}
+        
         {productsProps.products.length == 0 ? (
             <div className={`mx-auto text-[60px] col-span-2 md:col-span-12`}>
                 No Product
