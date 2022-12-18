@@ -39,7 +39,7 @@ export default function Home() {
   const [productDefects, setProductDefects] = useState("");
   const [productDeliveryType, setProductDeliveryType] = useState("");
   const [productMainImage, setProductMainImage] = useState("");
-  // const [productExtraImages, setProductExtraImages] = useState("");
+  const [productExtraImages, setProductExtraImages] = useState([]);
 
   const checkLogIn = async () => {
     const l = await checkLoggedIn();
@@ -143,23 +143,55 @@ export default function Home() {
     formdata.append("productDefects", productDefects);
     formdata.append("productDeliveryType", productDeliveryType);
     formdata.append("productMainImage", productMainImage);
-    // formdata.append("productExtraImages", productExtraImages);
+    formdata.append("productExtraImages", productExtraImages);
 
-
-    const res = await axios.post("products/product", formdata, {
+    console.log(Array.from(productExtraImages));
+    console.log(productExtraImages);
+    // "products/product"
+    const res = await axios.post("products/newproduct", formdata, {
       headers: {
+        "Content-Type": "multipart/form-data",
         accesstoken: localStorage.getItem("authtoken")
       }
     });
 
     console.log(res);
     if(res.status == 200) {
+      
+    // toast.success("Upload Successful");
 
-    toast.success("Upload Successful");
+    const extraImagesLength = productExtraImages.length;
 
-      console.log("Successful", {
-        position: toast.POSITION.TOP_LEFT,
-      });
+    let count = 0;
+    let img = new FormData();
+
+    if(extraImagesLength > 10) {
+      toast.warn("You can upload max 10 pictures.");
+    } else {
+
+      while(count < extraImagesLength) {
+        console.log(extraImagesLength);
+        console.log(res.data.productID);
+        console.log(productExtraImages[count]);
+        img.set("productExtraImages", productExtraImages[count])
+        await axios.put("products/product-picture/" + res.data.productID, img, {
+          headers: {
+          accesstoken: localStorage.getItem("authtoken")
+          }
+        });
+         count++;
+      }
+
+      toast.success("1 main picture and " + count + " extra pictures uploaded successful!");
+
+      console.log(count + " uploaded successful!");
+
+      console.log("Successful", res.data);
+    }
+
+    
+
+
     }
   };
 
@@ -429,7 +461,7 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* <div
+              <div
                 className={`border  flex justify-center items-center border-dashed border-primary rounded-[20px] text-center h-[200px]`}
               >
                 <div className={`w-full`}>
@@ -451,7 +483,7 @@ export default function Home() {
                     Add extra product image (MAX 10)
                   </label>
                 </div>
-              </div> */}
+              </div>
 
               {/* <div className={`border flex justify-center items-center border-dashed border-primary rounded-[20px] text-center h-[200px]`}>Add product image or select</div> */}
               {/* <div className={`border flex justify-center items-center border-dashed border-primary rounded-[20px] h-[200px]`}>1</div> */}
