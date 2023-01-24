@@ -200,8 +200,9 @@ export default function Home({loggedinState}) {
         id="dropdownMenuButton1"
         onClick={() => {setHide(!hide)}}
       >
-        <Image src={process.env.NEXT_PUBLIC_BASEURL.slice(0, sliceNum) + userProfile.data.profilePicUrl.slice(6)} className={`rounded-full`} layout='fixed'  width={40} height={40} />
-        <svg
+        <Image src={process.env.NEXT_PUBLIC_BASEURL.slice(0, sliceNum) + userProfile.data.profilePicUrl.slice(6)|| ""} className={`rounded-full`} layout='fixed'  width={40} height={40} />
+        
+        {/* <svg
           aria-hidden="true"
           focusable="false"
           data-prefix="fas"
@@ -209,13 +210,11 @@ export default function Home({loggedinState}) {
           className="w-2 ml-2"
           role="img"
           xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 320 512"
-        >
-          <path
-            fill="currentColor"
-            d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"
+          viewBox="0 0 320 512" >
+          <path fill="currentColor" d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"
           ></path>
-        </svg>
+        </svg> */}
+
       </button>
       <ul
         className={`
@@ -241,33 +240,7 @@ export default function Home({loggedinState}) {
         `}
         aria-labelledby="dropdownMenuButton1"
       >
-        <li>
-          <div
-            className="
-              dropdown-item
-              text-sm
-              py-2
-              px-4
-              gap-4
-              font-normal
-              block
-              w-full
-              flex
-              items-center
-              whitespace-nowrap
-              bg-transparent
-              text-gray-700
-              hover:bg-gray-100
-            "
-            href="#"
-            >
-              <Image src={process.env.NEXT_PUBLIC_BASEURL.slice(0, sliceNum) + userProfile.data.profilePicUrl.slice(6)} className={`rounded-full`} layout='fixed'  width={60} height={60} />
-              <div className={`flex flex-col gap-2`}>
-              <div className={`font-bold`}>{userProfile.data.fullName}</div>
-              <div className={`bg-primary text-white rounded-[20px] py-1 px-2 cursor-pointer`} onClick={() => {router.push("/profile")}}>View profile</div>
-              </div>
-              </div>
-        </li>
+       
         <hr className={`w-[90%] mx-auto my-2 border-yellow`} />
         <li>
           <a
@@ -419,9 +392,7 @@ function HelpButton({hide, setHide}) {
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 320 512"
         >
-          <path
-            fill="currentColor"
-            d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"
+          <path fill="currentColor" d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"
           ></path>
         </svg>
       </button>
