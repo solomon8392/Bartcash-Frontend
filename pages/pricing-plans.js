@@ -2,13 +2,68 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { useState } from "react";
 
-
 export default function Home() {
-  
+  const [arrowOpen, setArrowOpen] = useState(null);
+  const [openaccordion, setOpenaccordion] = useState(null);
   const router = useRouter();
-    
+
+  const handleClick = (index) => {
+    if (openaccordion === index) {
+      setOpenaccordion(null);
+      setArrowOpen(null);
+    } else {
+      setOpenaccordion(index);
+      setArrowOpen(index);
+    }
+  };
+
+  const Bids = [
+    {
+      bidName: "Account Information",
+      innertext:
+        "Exercitation in fugiat est ut ad ea cupidatat ut in cupidatat occaecat ut occaecat consequat est minim minim esse tempor laborum consequat esse adipisicing eu reprehenderit enim Exercitation in fugiat est ut ad ea cupidatat ut in cupidatat occaecat ut occaecat consequat est minim minim esse tempor laborum consequat esse adipisicing eu reprehenderit enim.",
+    },
+    {
+      bidName: "Account recovery",
+      innertext:
+        "Exercitation in fugiat est ut ad ea cupidatat ut in cupidatat occaecat ut occaecat consequat est minim minim esse tempor laborum consequat esse adipisicing eu reprehenderit enim Exercitation in fugiat est ut ad ea cupidatat ut in cupidatat occaecat ut occaecat consequat est minim minim esse tempor laborum consequat esse adipisicing eu reprehenderit enim.",
+    }
+  ];
+
+  const biditems = Bids.map((items, index) => (
+    <div className="my-[20px] justify-between" key={index}>
+      <div className="w-[100%]  cursor-pointer flex rounded-md justify-center text-center items-center">
+        <div
+          onClick={() => handleClick(index)}
+          className="w-[85%] flex justify-between font-semibold lg:w-[40%] md:w-[46] text-[12px] rounded-md lg:text-[13px]  border-b-[5px] border-[1px] p-[9px]"
+        >
+          {items.bidName}
+
+          <div className=" justify-between">
+            <div className="justify-between">
+              {arrowOpen === index ? (
+                <Image src={`/images/buttonup.png`} width={11 } height={8} />
+              ) : (
+                <Image src={`/images/buttondown.png`} width={11} height={8} />
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {openaccordion === index && (
+        <div className="w-[100%] flex justify-center">
+          <p className="w-[85%] lg:w-[40%] md:w-[46] text-[12px] rounded-md lg:text-[13px]align-center justify-center text-[11px] lg:text-[13px] rounded-md border-b-[5px] grid col-[2] p-3 border-[1px] margin-[29%]">
+            {items.innertext}
+          </p>
+        </div>
+      )}
+    </div>
+  ));
+
   return (
     <div>
+
         <div className="flex space-y-[18px] justify-between items-center">
         <div className="text-center ">
         <Image src={`/images/cash.png`} width={100} height={66} />
@@ -75,16 +130,17 @@ export default function Home() {
           {/* <table class="w-full"/>  lg:w-[60%] md:w-[50%] */}
 
           <div
-            // onClick={() => router.push("/Account-selected")}
+            // onClick={() => router.push("/comment")}
             className="text-center w-[100%] lg:w-[60%] md:w-[50%] gap-[19%] cursor-pointer place-items-center border-1 hover:border-[#FFC300] lg:mt-2 mt-1 m-2 justify-center bg-white p-4 rounded-lg shadow border-2"
           >
             <Image src={`/images/vector-1.png`} width={20} height={20} />
+
+            {/* <h5 class="text-xl font-medium leading-tight mb-2">Getting Started</h5> */}
             <p className="text-gray-500 cursor-pointer md:text-[10px] text-[11px] lg:text-[13px] lg:font-[550] md:font-[450] font-[350] text-[#001D3D] font-['Roboto']">
               Getting Started
             </p>
           </div>
-          <div 
-            className="text-center w-[100%] lg:w-[60%] md:w-[50%] cursor-pointer border-1 hover:border-[#FFC300] lg:mt-2 mt-1 m-2 justify-center bg-white p-4 rounded-lg shadow border-2">
+          <div className="text-center w-[100%] lg:w-[60%] md:w-[50%] cursor-pointer border-1 hover:border-[#FFC300] lg:mt-2 mt-1 m-2 justify-center bg-white p-4 rounded-lg shadow border-2">
             <Image src={`/images/vector-1.png`} width={20} height={20} />
 
             <p className="text-gray-500 cursor-pointer md:text-[10px] text-[11px] lg:text-[13px] lg:font-[550] md:font-[450] font-[350] text-[#001D3D] font-['Roboto']">
@@ -98,7 +154,9 @@ export default function Home() {
               Security
             </p>
           </div>
-          <div className="text-center w-[100%] lg:w-[60%] md:w-[50%] cursor-pointer border-1 hover:border-[#FFC300] lg:mt-2 mt-1 m-2 justify-center bg-white p-4 rounded-lg shadow border-2">
+          <div 
+           onClick={() => router.push("/pricing-plan")}
+          className="text-center w-[100%] lg:w-[60%] md:w-[50%] cursor-pointer border-1 hover:border-[#FFC300] lg:mt-2 mt-1 m-2 justify-center bg-white p-4 rounded-lg shadow border-2">
             <Image src={`/images/vector-2.png`} width={20} height={20} />
 
             <p className="text-gray-500 cursor-pointer md:text-[10px] text-[10px] lg:text-[13px]  lg:font-[550] md:font-[450] font-[350] text-[#001D3D] font-['Roboto']">
@@ -107,6 +165,8 @@ export default function Home() {
           </div>
         </div>
       </div>
+
+      <div>{biditems}</div>
 
       <spam>
         <a
@@ -121,5 +181,4 @@ export default function Home() {
       </spam>
     </div>
   );
-  }
-
+}

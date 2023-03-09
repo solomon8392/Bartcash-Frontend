@@ -13,6 +13,7 @@ import AuctionComponent from "../components/Auction";
 import { useState, useEffect } from 'react';
 import checkLoggedIn from "../utilities/checkifloggedin";
 import axios from "axios";
+import Homenav from '../components/barnav';
 
 export default function Home() {
 
@@ -197,7 +198,7 @@ export default function Home() {
       <NavigationComponent />
 
       <hr />
-
+      <Homenav />
 
       <CarouselComponent carouselProperties={carProps} />
 
